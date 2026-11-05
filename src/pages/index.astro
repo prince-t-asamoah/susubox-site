@@ -5,6 +5,7 @@ import Photo from "../components/Photo.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
 import StepCard from "../components/StepCard.astro";
 import { findPhoto, photoSources } from "../lib/photos";
+import { stats } from "../config";
 
 const hero = { name: "hero-trader", ratio: [4, 5] as [number, number] };
 const heroSizes = "(min-width: 1216px) 497px, (min-width: 768px) 40vw, calc(100vw - 32px)";
@@ -117,6 +118,18 @@ const problems: { icon: IconName; title: string; text: string }[] = [
       />
     </div>
   </section>
+
+  <!-- 6.5 Numbers strip (SAMPLE values in src/config.ts) -->
+  <div class="numbers">
+    <ul class="container numbers__list" role="list">
+      {stats.map((stat) => (
+        <li class="stat">
+          <strong class="stat__value">{stat.value}</strong>
+          <span>{stat.label}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
 </Base>
 
 <style>
@@ -332,6 +345,53 @@ const problems: { icon: IconName; title: string; text: string }[] = [
 
     .checklist svg {
       margin-top: 3px;
+    }
+  }
+
+  /* ---------- Numbers strip ---------- */
+  .numbers {
+    padding-block: var(--section-y);
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  .numbers__list {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat + .stat {
+    padding-top: var(--space-3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .stat__value {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  @media (min-width: 768px) {
+    .numbers__list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+
+    .stat + .stat {
+      padding-top: 0;
+      padding-left: var(--space-4);
+      border-top: 0;
+      border-left: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .stat__value {
+      font-size: 3rem;
     }
   }
 </style>
