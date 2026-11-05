@@ -5,7 +5,7 @@
  */
 export const site = {
   name: "SusuBox", // SAMPLE: confirm business name with owner
-  url: "https://susubox-site.netlify.app", // SAMPLE: replace with custom domain (also update astro.config.mjs)
+  url: "https://susubox-site.netlify.app", // SAMPLE: replace with custom domain (also update astro.config.mjs and public/robots.txt)
   whatsappNumber: "233000000000", // TODO: real number (international format, no +)
   whatsappMessage: "Hello SusuBox, I want to start saving.",
   email: "hello@susubox.example", // SAMPLE: replace with owner's email

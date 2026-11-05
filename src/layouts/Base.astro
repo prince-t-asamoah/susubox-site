@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
+import { site, PLACEHOLDER_WHATSAPP } from "../config";
 
 interface Props {
   title: string;
@@ -14,6 +15,26 @@ interface Props {
 }
 
 const { title, description, preloadImage, noindex = false } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ogImage = new URL("/og.jpg", site.url).href;
+
+// SPEC §8. The telephone is left out while the WhatsApp number is still the placeholder,
+// so no fake contact data reaches search engines (SHARED-STANDARDS §8).
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.name,
+  url: site.url,
+  logo: new URL("/favicon.svg", site.url).href,
+  contactPoint: {
+    "@type": "ContactPoint",
+    ...(site.whatsappNumber !== PLACEHOLDER_WHATSAPP && { telephone: `+${site.whatsappNumber}` }),
+    contactType: "customer support",
+    areaServed: "GH",
+    availableLanguage: ["en", "tw"],
+  },
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -24,6 +45,18 @@ const { title, description, preloadImage, noindex = false } = Astro.props;
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0B6E4F" />
     {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
     {preloadImage && (
       <link
@@ -36,6 +69,7 @@ const { title, description, preloadImage, noindex = false } = Astro.props;
       />
     )}
     <slot name="head" />
+    <script type="application/ld+json" set:html={JSON.stringify(organization)} />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
