@@ -1,0 +1,51 @@
+---
+import Icon from "./Icon.astro";
+import { waLink } from "../lib/whatsapp";
+---
+<a class="wa-float" href={waLink} target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <Icon name="whatsapp" />
+</a>
+
+<style>
+  .wa-float {
+    position: fixed;
+    right: 16px;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    z-index: 50;
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-whatsapp);
+    color: #fff;
+    box-shadow: var(--shadow-float);
+  }
+
+  .wa-float:focus-visible {
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .wa-float {
+      transition: transform 150ms ease;
+    }
+
+    .wa-float:hover,
+    .wa-float:focus-visible {
+      transform: scale(1.05);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .wa-float {
+      right: 24px;
+      bottom: max(24px, env(safe-area-inset-bottom));
+    }
+  }
+
+  /* Hidden while the mobile menu overlay is open (it has its own WhatsApp button). */
+  :global(html:has(#mobile-menu[open])) .wa-float {
+    display: none;
+  }
+</style>

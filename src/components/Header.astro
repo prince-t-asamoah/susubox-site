@@ -1,0 +1,267 @@
+---
+import Icon from "./Icon.astro";
+import Button from "./Button.astro";
+import { site } from "../config";
+import { navLinks } from "../lib/nav";
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => !href.includes("#") && path.startsWith(href);
+---
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="wordmark" href="/">{site.name}</a>
+
+    <nav class="site-nav" aria-label="Main">
+      <ul role="list">
+        {navLinks.map((link) => (
+          <li>
+            <a href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Without JS this is a link to the footer nav; menu.ts upgrades it to a dialog button. -->
+    <a class="menu-toggle" href="#footer-nav" data-menu-toggle>
+      <Icon name="menu" />
+      Menu
+    </a>
+  </div>
+</header>
+
+<dialog id="mobile-menu" class="menu" aria-label="Menu">
+  <div class="menu__top">
+    <a class="wordmark" href="/">{site.name}</a>
+    <button class="menu__close" type="button" aria-label="Close menu" data-menu-close>
+      <Icon name="close" />
+    </button>
+  </div>
+
+  <nav class="menu__nav" aria-label="Main">
+    <ul role="list">
+      {navLinks.map((link, i) => (
+        <li>
+          <a
+            href={link.href}
+            aria-current={isCurrent(link.href) ? "page" : undefined}
+            autofocus={i === 0}
+          >
+            <span>{link.label}</span>
+            <Icon name="chevron-right" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <div class="menu__bottom">
+    <Button whatsapp block class="menu__cta">Start saving on WhatsApp</Button>
+    <a class="menu__email" href={`mailto:${site.email}`}>
+      <Icon name="mail" />
+      {site.email}
+    </a>
+  </div>
+</dialog>
+
+<script src="../scripts/menu.ts"></script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .site-header__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-h);
+  }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+
+  /* Mobile: Menu button, no inline nav */
+  .site-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    min-height: 48px;
+    padding: 0 16px;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    .wordmark {
+      font-size: 1.375rem;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .site-nav {
+      display: block;
+    }
+
+    .site-nav ul {
+      display: flex;
+      gap: var(--space-1);
+      margin: 0;
+    }
+
+    .site-nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 16px;
+      border-radius: var(--radius);
+      color: var(--color-ink);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover {
+      background: var(--color-surface);
+      color: var(--color-primary);
+    }
+
+    .site-nav a[aria-current="page"] {
+      color: var(--color-primary);
+      font-weight: 700;
+      text-decoration: underline 2px;
+      text-underline-offset: 6px;
+    }
+  }
+
+  /* ---------- Full-screen menu overlay (SHARED-STANDARDS §2b) ---------- */
+  .menu {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    overflow-y: auto;
+  }
+
+  .menu[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .menu[open] {
+      animation: menu-fade 150ms ease-out;
+    }
+  }
+
+  @keyframes menu-fade {
+    from {
+      opacity: 0;
+    }
+  }
+
+  .menu__top {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-h);
+    padding: 0 var(--gutter);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .menu__close {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    cursor: pointer;
+  }
+
+  .menu__nav {
+    padding: 8px var(--gutter);
+  }
+
+  .menu__nav ul {
+    margin: 0;
+  }
+
+  .menu__nav a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 64px;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-ink);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.25;
+    text-decoration: none;
+  }
+
+  .menu__nav a svg {
+    color: var(--color-primary);
+  }
+
+  .menu__nav a[aria-current="page"] span {
+    text-decoration: underline 3px var(--color-primary);
+    text-underline-offset: 8px;
+  }
+
+  .menu__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-top: auto;
+    padding: 16px var(--gutter) calc(24px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--color-border);
+  }
+
+  .menu__email {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    min-height: 48px;
+    color: var(--color-primary);
+    font-weight: 700;
+    text-underline-offset: 4px;
+  }
+
+  /* Button.astro is a child component, so target its class globally inside the menu. */
+  .menu__bottom :global(.menu__cta) {
+    width: 100%;
+  }
+</style>

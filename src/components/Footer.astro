@@ -1,0 +1,89 @@
+---
+import { site } from "../config";
+import { navLinks } from "../lib/nav";
+---
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <a class="site-footer__wordmark" href="/">{site.name}</a>
+
+    <!-- Also the no-JS fallback target for the header Menu link (SHARED-STANDARDS §2b). -->
+    <nav id="footer-nav" class="site-footer__nav" aria-label="Footer">
+      <ul role="list">
+        {navLinks.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+      </ul>
+    </nav>
+
+    {/* TODO: footer disclaimer. SHARED-STANDARDS §13 step 5 asks for one, but SPEC.md has no disclaimer copy. */}
+
+    <p class="site-footer__credit small">
+      Website by Prince Twumasi Asamoah · <a href={site.repoUrl}>GitHub</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg);
+  }
+
+  .site-footer__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    /* 88px bottom keeps the floating WhatsApp button off the footer links on mobile. */
+    padding-block: 24px 88px;
+  }
+
+  .site-footer__wordmark {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    align-self: flex-start;
+    color: var(--color-primary);
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .site-footer__nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--space-3);
+    margin: 0;
+  }
+
+  .site-footer__nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    color: var(--color-ink);
+    text-decoration-color: var(--color-border-strong);
+    text-underline-offset: 4px;
+  }
+
+  .site-footer__nav a:hover {
+    color: var(--color-primary);
+  }
+
+  .site-footer__credit {
+    color: var(--color-muted);
+  }
+
+  .site-footer__credit a {
+    display: inline-block;
+    padding-block: 12px;
+    font-weight: 700;
+    text-underline-offset: 3px;
+  }
+
+  @media (min-width: 768px) {
+    .site-footer__inner {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-4);
+      padding-block: var(--space-4);
+    }
+  }
+</style>

@@ -1,0 +1,25 @@
+---
+import Icon from "./Icon.astro";
+import { waLink } from "../lib/whatsapp";
+
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary";
+  /** WhatsApp CTA: links to the config wa.me URL and shows the WhatsApp glyph. */
+  whatsapp?: boolean;
+  /** Full width on mobile, auto width from 768px. */
+  block?: boolean;
+  class?: string;
+}
+
+const { href, variant = "primary", whatsapp = false, block = false, class: className } = Astro.props;
+const url = whatsapp ? waLink : href;
+---
+<a
+  class:list={["btn", `btn--${variant}`, { "btn--block": block }, className]}
+  href={url}
+  {...whatsapp ? { target: "_blank", rel: "noopener" } : {}}
+>
+  {whatsapp && <Icon name="whatsapp" size={20} />}
+  <slot />
+</a>
