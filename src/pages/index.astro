@@ -95,6 +95,28 @@ const problems: { icon: IconName; title: string; text: string }[] = [
       </div>
     </div>
   </section>
+
+  <!-- 6.4 Benefits -->
+  <section class="section section--rule" aria-labelledby="benefits-title">
+    <div class="container benefits">
+      <div class="benefits__text">
+        <h2 id="benefits-title">Built for how you already work</h2>
+        <ul class="checklist" role="list">
+          <li><Icon name="check" />Works with your existing susu collector</li>
+          <li><Icon name="check" />Records in English or Twi</li>
+          <li><Icon name="check" />Weekly statements you can share with a lender</li>
+          <li><Icon name="check" />Your data stays private — only you see your record</li>
+        </ul>
+      </div>
+      <Photo
+        class="benefits__photo"
+        name="benefits-collector"
+        ratio={[1, 1]}
+        sizes="(min-width: 1216px) 544px, (min-width: 768px) 45vw, calc(100vw - 32px)"
+        alt="A susu collector visits a trader at her stall"
+      />
+    </div>
+  </section>
 </Base>
 
 <style>
@@ -260,6 +282,56 @@ const problems: { icon: IconName; title: string; text: string }[] = [
 
     .steps__cta :global(.btn) {
       flex: none;
+    }
+  }
+
+  /* ---------- Benefits ---------- */
+  .benefits {
+    display: grid;
+    gap: var(--stack);
+  }
+
+  .benefits__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .checklist {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .checklist li {
+    display: flex;
+    gap: 12px;
+  }
+
+  .checklist svg {
+    flex: none;
+    margin-top: 1px;
+    color: var(--color-primary);
+  }
+
+  @media (min-width: 768px) {
+    .benefits {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    /* Image left, list right (SPEC §6.4); the list stays first in source for mobile. */
+    .benefits :global(.benefits__photo) {
+      grid-row: 1;
+      grid-column: 1;
+    }
+
+    .checklist li {
+      font-size: 1.125rem;
+    }
+
+    .checklist svg {
+      margin-top: 3px;
     }
   }
 </style>
