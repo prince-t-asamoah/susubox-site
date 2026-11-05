@@ -2,9 +2,18 @@
 
 Your daily susu, recorded on WhatsApp. A fast, mobile-first website for a digital susu savings service for market traders in Ghana.
 
-Status: built, not yet deployed. The owner's details are still to come (see the [handover checklist](#handover-checklist)).
+Status: deployed on Netlify. The owner's details are still to come (see the [handover checklist](#handover-checklist)).
 
-Live site: [LIVE_URL] · Design prototype: [docs/design/](docs/design/)
+Live site: **[susubox-site.netlify.app](https://susubox-site.netlify.app/)** · Design prototype: [docs/design/](docs/design/)
+
+| Mobile | Desktop |
+| --- | --- |
+| [![Home page on a 360px phone](docs/screenshots/home-mobile.jpg)](docs/screenshots/home-mobile.jpg) | [![Home page at 1280px](docs/screenshots/home-desktop.jpg)](docs/screenshots/home-desktop.jpg) |
+
+More screenshots of the live site, taken on 5 November 2026, are in [docs/screenshots/](docs/screenshots/):
+- [contact page, mobile](docs/screenshots/contact-mobile.jpg)
+- [contact page, desktop](docs/screenshots/contact-desktop.jpg)
+- [mobile menu](docs/screenshots/menu-mobile.jpg)
 
 ## PageSpeed Insights (mobile)
 
@@ -15,7 +24,9 @@ Live site: [LIVE_URL] · Design prototype: [docs/design/](docs/design/)
 
 Screenshots: [docs/pagespeed/](docs/pagespeed/)
 
-Target: 90+ in every category on mobile. Local Lighthouse (mobile, before deploy) scored 100 / 100 / 100 / 100 on both pages, including a run with test photos in place. The live PageSpeed scores replace this note after deploy.
+Target: 90+ in every category on mobile. Before deploy, local Lighthouse (mobile) on the production build scored 100 / 100 / 100 / 100 on both pages, with LCP 1.6 s on Home. The table above is filled in from PageSpeed Insights on the live URL.
+
+> **Note:** Netlify adds a "Powered by Netlify" badge script (`/.netlify/scripts/hud`) to the live site. It isn't part of this build, and it costs main-thread time on mobile. Turn it off under **Project configuration → General → Powered by Netlify badge** before running PageSpeed (see [Deploying to Netlify](#deploying-to-netlify)).
 
 ## Features
 
@@ -93,8 +104,9 @@ The current photos are 1408 × 768, so the hero is served at up to 614px wide an
 1. In Netlify, choose **Add new site → Import an existing project** and pick this GitHub repo.
 2. The build settings come from `netlify.toml`: `npm run build`, publish directory `dist`, Node 24.
 3. Deploy, then rename the site to `susubox-site` (**Site configuration → Change site name**).
-4. Submit a test message on `/contact/` and confirm it appears under **Forms**.
-5. Run PageSpeed Insights (mobile) on `/` and `/contact/`. Save screenshots in `docs/pagespeed/` and fill in the scores table above.
+4. Turn off the **Powered by Netlify badge** (**Project configuration → General**). Otherwise Netlify adds a ~35 KB script to every page, and the badge sits over the floating WhatsApp button. Some free plans may not offer the toggle.
+5. Under **Forms**, make sure form detection is enabled, then redeploy. Submit a test message on `/contact/` and confirm it appears under **Forms → contact**.
+6. Run PageSpeed Insights (mobile) on `/` and `/contact/`. Save screenshots in `docs/pagespeed/` and fill in the scores table above.
 
 ## Performance techniques
 
@@ -119,7 +131,7 @@ Sample content to confirm or replace with the owner before launch. Each item is 
 - [ ] WhatsApp number: currently the placeholder `233000000000`
 - [ ] Email: `hello@susubox.example`
 - [ ] Office hours: "Mon–Sat, 7am–6pm"
-- [ ] Site URL / custom domain: `https://susubox-site.netlify.app` (also `astro.config.mjs`, `public/robots.txt`)
+- [ ] Custom domain: live now at `https://susubox-site.netlify.app`; if it changes, also update `astro.config.mjs` and `public/robots.txt`
 - [ ] Numbers strip: "GHS 20 average daily contribution", "7 days to your first statement", "0 apps to download"
 - [ ] Testimonial from "Ama, fabric seller, Kumasi": replace with a real quote (with permission) or set `testimonial` to `null`
 - [ ] Pricing: "Registration is free. A small monthly fee applies after your first month."
