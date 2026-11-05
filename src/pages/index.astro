@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Button from "../components/Button.astro";
 import Photo from "../components/Photo.astro";
+import Icon, { type IconName } from "../components/Icon.astro";
 import { findPhoto, photoSources } from "../lib/photos";
 
 const hero = { name: "hero-trader", ratio: [4, 5] as [number, number] };
@@ -10,6 +11,16 @@ const heroPhoto = findPhoto(hero.name);
 const heroPreload = heroPhoto
   ? { srcset: (await photoSources(heroPhoto, hero)).avif.srcSet.attribute, sizes: heroSizes }
   : undefined;
+
+const problems: { icon: IconName; title: string; text: string }[] = [
+  {
+    icon: "card-lost",
+    title: "Paper cards get lost",
+    text: "A torn or missing susu card can mean weeks of savings with no proof.",
+  },
+  { icon: "bank", title: "Banks ask for history", text: "Lenders want records. Most traders have none on paper." },
+  { icon: "clock", title: "No time to visit a bank", text: "Your stall can't close for half a day to queue." },
+];
 ---
 <Base
   title="SusuBox — Daily susu savings on WhatsApp"
@@ -40,6 +51,24 @@ const heroPreload = heroPhoto
         alt="A market trader checks her savings record on her phone"
         priority
       />
+    </div>
+  </section>
+
+  <!-- 6.2 Problem strip -->
+  <section class="section section--surface" aria-labelledby="problem-title">
+    <div class="container stack">
+      <h2 id="problem-title" class="problem__title">Saving every day, but no record to show for it</h2>
+      <ul class="problem__list" role="list">
+        {problems.map((item) => (
+          <li class="problem__item">
+            <span class="icon-tile"><Icon name={item.icon} /></span>
+            <div class="problem__body">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 </Base>
@@ -113,6 +142,50 @@ const heroPreload = heroPhoto
 
     .hero :global(.hero__photo) {
       margin-top: 0;
+    }
+  }
+
+  /* ---------- Problem strip ---------- */
+  .problem__list {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .problem__item {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .problem__body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .icon-tile {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    color: var(--color-primary);
+  }
+
+  @media (min-width: 768px) {
+    .problem__title {
+      max-width: 20em;
+    }
+
+    .problem__list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+
+    .problem__item {
+      flex-direction: column;
     }
   }
 </style>
