@@ -122,14 +122,16 @@ const problems: { icon: IconName; title: string; text: string }[] = [
 
   <!-- 6.5 Numbers strip (SAMPLE values in src/config.ts) -->
   <div class="numbers">
-    <ul class="container numbers__list" role="list">
+    <div class="container">
+      <ul class="numbers__list" role="list">
       {stats.map((stat) => (
         <li class="stat">
           <strong class="stat__value">{stat.value}</strong>
           <span>{stat.label}</span>
         </li>
       ))}
-    </ul>
+      </ul>
+    </div>
   </div>
 
   <!-- 6.6 Testimonial (SAMPLE in src/config.ts; set it to null to remove the section) -->
@@ -161,6 +163,16 @@ const problems: { icon: IconName; title: string; text: string }[] = [
           Only you, unless you choose to share your statement with a lender or your association.
         </FaqItem>
       </div>
+    </div>
+  </section>
+
+  <!-- 6.8 Final CTA -->
+  <section class="final-cta section--surface" aria-labelledby="cta-title">
+    <div class="container final-cta__inner">
+      <h2 id="cta-title">Start your record today</h2>
+      <p class="lead">It takes five minutes on WhatsApp.</p>
+      <Button whatsapp block class="final-cta__button">Start saving on WhatsApp</Button>
+      <a class="text-link" href="/contact/">Are you a collector or association? Contact us →</a>
     </div>
   </section>
 </Base>
@@ -353,7 +365,8 @@ const problems: { icon: IconName; title: string; text: string }[] = [
     gap: 12px;
   }
 
-  .checklist svg {
+  /* Icon.astro renders the svg, so it needs :global() to be reached from this page. */
+  .checklist :global(svg) {
     flex: none;
     margin-top: 1px;
     color: var(--color-primary);
@@ -376,7 +389,7 @@ const problems: { icon: IconName; title: string; text: string }[] = [
       font-size: 1.125rem;
     }
 
-    .checklist svg {
+    .checklist :global(svg) {
       margin-top: 3px;
     }
   }
@@ -476,6 +489,34 @@ const problems: { icon: IconName; title: string; text: string }[] = [
       grid-template-columns: 1fr 2fr;
       align-items: start;
       gap: var(--space-8);
+    }
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta {
+    padding-block: var(--space-6);
+  }
+
+  .final-cta__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .final-cta :global(.final-cta__button) {
+    margin-top: var(--space-1);
+  }
+
+  @media (min-width: 768px) {
+    .final-cta {
+      padding-block: var(--space-12);
+    }
+
+    .final-cta__inner {
+      max-width: calc(640px + 2 * var(--gutter));
+      align-items: center;
+      text-align: center;
     }
   }
 </style>
