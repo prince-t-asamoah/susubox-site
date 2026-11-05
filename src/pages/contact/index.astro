@@ -1,0 +1,368 @@
+---
+import Base from "../../layouts/Base.astro";
+import Icon from "../../components/Icon.astro";
+import { site } from "../../config";
+import { waLink } from "../../lib/whatsapp";
+
+const roles = ["Trader", "Susu collector", "Market association", "Partner", "Other"];
+
+/*
+ * TODO: field error copy is not in SPEC.md. These are the design handoff's placeholders.
+ * They live on each field as data-msg-* attributes and are read by contact-form.ts.
+ */
+const msg = {
+  name: "Enter your full name.",
+  phoneRequired: "Enter your phone number.",
+  phoneInvalid: "Enter a Ghana phone number, e.g. 024 123 4567",
+  email: "Enter a valid email address, or leave it blank.",
+  role: "Choose one option.",
+  message: "Enter a message.",
+};
+---
+<Base
+  title="Contact SusuBox"
+  description="Talk to SusuBox about bringing digital susu records to your market, association or collector group."
+>
+  <div class="container contact">
+    <div class="contact__main">
+      <h1>Talk to us</h1>
+      <p class="lead">
+        For collectors, market associations and partners. Traders, the fastest way to reach us is WhatsApp.
+      </p>
+
+      <a class="wa-card" href={waLink} target="_blank" rel="noopener">
+        <span class="wa-card__icon"><Icon name="whatsapp" size={20} /></span>
+        Prefer WhatsApp? Chat with us now →
+      </a>
+
+      <form
+        class="form"
+        name="contact"
+        method="POST"
+        action="/contact/thanks/"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        data-contact-form
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+        <div class="field">
+          <label for="name">Full name</label>
+          <input
+            class="input"
+            id="name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+            aria-describedby="name-error"
+            data-msg-required={msg.name}
+          />
+          <p class="field-error" id="name-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <p class="hint small muted" id="phone-hint">e.g. 024 123 4567 or +233 24 123 4567</p>
+          <input
+            class="input"
+            id="phone"
+            name="phone"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            pattern="^(\+233|0)[0-9]{9}$"
+            required
+            aria-describedby="phone-hint phone-error"
+            data-msg-required={msg.phoneRequired}
+            data-msg-invalid={msg.phoneInvalid}
+          />
+          <p class="field-error" id="phone-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="email">Email (optional)</label>
+          <input
+            class="input"
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            aria-describedby="email-error"
+            data-msg-invalid={msg.email}
+          />
+          <p class="field-error" id="email-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="role">I am a…</label>
+          <select class="input" id="role" name="role" required aria-describedby="role-error" data-msg-required={msg.role}>
+            {/* TODO: placeholder option copy is not in SPEC.md */}
+            <option value="">Choose one</option>
+            {roles.map((role) => <option>{role}</option>)}
+          </select>
+          <p class="field-error" id="role-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="market">Market or town</label>
+          <input class="input" id="market" name="market" type="text" autocomplete="address-level2" />
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea
+            class="input"
+            id="message"
+            name="message"
+            rows="5"
+            required
+            aria-describedby="message-error"
+            data-msg-required={msg.message}
+          ></textarea>
+          <p class="field-error" id="message-error" aria-live="polite"></p>
+        </div>
+
+        <div class="form-alert" role="alert" hidden data-form-alert>
+          <Icon name="alert" />
+          <p>Something went wrong. Please try again or <a href={waLink} target="_blank" rel="noopener">message us on WhatsApp</a>.</p>
+        </div>
+
+        <button class="btn btn--primary btn--block form__submit" type="submit">
+          <span class="form__spinner" hidden><Icon name="loader" size={20} /></span>
+          <span data-submit-label>Send message</span>
+        </button>
+      </form>
+    </div>
+
+    <aside class="info" aria-label="Contact details">
+      <p class="info__row">
+        <Icon name="clock" />
+        {/* SAMPLE: office hours in src/config.ts */}
+        <span>Office hours: {site.officeHours}</span>
+      </p>
+      <p class="info__row">
+        <Icon name="mail" />
+        <a class="info__email" href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+    </aside>
+  </div>
+</Base>
+
+<script src="../../scripts/contact-form.ts"></script>
+
+<style>
+  /* ---------- Form fields (contact page only) ---------- */
+  .field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .field label {
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: var(--space-1);
+  }
+
+  .field .hint {
+    margin-top: -4px;
+    margin-bottom: var(--space-1);
+  }
+
+  .input {
+    width: 100%;
+    min-height: 48px;
+    padding: 11px 16px;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .input:focus-visible {
+    border-color: var(--color-primary);
+  }
+
+  .input[aria-invalid="true"] {
+    border-color: var(--color-error);
+    box-shadow: inset 0 0 0 1px var(--color-error);
+  }
+
+  select.input {
+    appearance: none;
+    padding-right: 48px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%231B1B1B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+
+  textarea.input {
+    min-height: 152px;
+    resize: vertical;
+  }
+
+  .field-error {
+    display: flex;
+    gap: var(--space-1);
+    margin-top: var(--space-1);
+    color: var(--color-error);
+  }
+
+  .field-error:empty {
+    display: none;
+  }
+
+  .field-error :global(svg) {
+    flex: none;
+    margin-top: 1px;
+  }
+
+  .contact {
+    display: grid;
+    padding-block: var(--space-4) var(--space-6);
+  }
+
+  .contact__main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  /* WhatsApp card: above the form so traders see WhatsApp first */
+  .wa-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 72px;
+    margin: var(--space-1) 0 var(--space-2);
+    padding: var(--space-2);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius);
+    color: var(--color-primary);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .wa-card:hover {
+    background: var(--color-surface);
+  }
+
+  .wa-card__icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-whatsapp);
+    color: #fff;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .form-alert {
+    display: flex;
+    gap: var(--space-1);
+    padding: var(--space-2);
+    border: 1px solid var(--color-error);
+    border-radius: var(--radius);
+    background: var(--color-error-bg);
+    color: var(--color-error);
+  }
+
+  .form-alert[hidden] {
+    display: none;
+  }
+
+  .form-alert :global(svg) {
+    flex: none;
+  }
+
+  .form-alert a {
+    color: inherit;
+    font-weight: 700;
+  }
+
+  .form__spinner {
+    display: inline-flex;
+  }
+
+  .form__spinner[hidden] {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .form__spinner :global(svg) {
+      animation: spin 0.8s linear infinite;
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-6);
+    padding: var(--space-3);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+
+  .info__row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 48px;
+    overflow-wrap: anywhere;
+  }
+
+  .info__row :global(svg) {
+    flex: none;
+    color: var(--color-primary);
+  }
+
+  .info__email {
+    font-weight: 700;
+    text-underline-offset: 4px;
+  }
+
+  @media (min-width: 768px) {
+    .contact {
+      padding-block: var(--space-8) var(--space-12);
+    }
+
+    .wa-card {
+      padding: var(--space-2) var(--space-3);
+      font-size: 1.125rem;
+    }
+
+    .form__submit {
+      align-self: flex-start;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .contact {
+      grid-template-columns: 7fr 4fr;
+      align-items: start;
+      gap: var(--space-8);
+    }
+
+    .info {
+      /* Lines the info block up with the WhatsApp card (design handoff). */
+      margin-top: 176px;
+      padding: var(--space-4);
+    }
+  }
+</style>

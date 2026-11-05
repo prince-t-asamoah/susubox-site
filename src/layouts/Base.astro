@@ -9,9 +9,11 @@ interface Props {
   description: string;
   /** The LCP hero image's AVIF srcset; the only image preloaded (SPEC §9). */
   preloadImage?: { srcset: string; sizes: string };
+  /** Keep a page out of search results (the form thanks page). */
+  noindex?: boolean;
 }
 
-const { title, description, preloadImage } = Astro.props;
+const { title, description, preloadImage, noindex = false } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -21,6 +23,7 @@ const { title, description, preloadImage } = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0B6E4F" />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
     {preloadImage && (
       <link

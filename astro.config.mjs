@@ -7,7 +7,14 @@ export default defineConfig({
   trailingSlash: "always",
   build: {
     format: "directory",
-    inlineStylesheets: "always", // total CSS is well under 14 KB (SHARED-STANDARDS §2)
+    // SHARED-STANDARDS §2: inline CSS only when it is under 14 KB. Page-specific sheets
+    // (≤ 6.5 KB) are inlined; the shared Base sheet (~9 KB, used by every page) is linked
+    // so it is cached once, which keeps each page's inline CSS < 14 KB and HTML < 30 KB.
+    inlineStylesheets: "auto",
+  },
+  vite: {
+    build: { assetsInlineLimit: 8 * 1024 },
   },
   compressHTML: true,
+  scopedStyleStrategy: "class", // shorter selectors than data-astro-cid attributes
 });
