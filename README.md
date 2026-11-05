@@ -32,6 +32,18 @@ Screenshots: [home](docs/pagespeed/home-mobile.png) · [contact](docs/pagespeed/
 
 > **Note:** The scores above are with Netlify's "Powered by Netlify" badge turned off (**Project configuration → General**). When it's on, Netlify adds a script (`/.netlify/scripts/hud`) to every page that costs main-thread time on mobile and covers the floating WhatsApp button. Keep it off.
 
+## HTML validation (W3C)
+
+| Page | Errors | Warnings | Report |
+| --- | --- | --- | --- |
+| Home | 0 | 7 | [screenshot](docs/w3c/home.png) |
+| Contact | 0 | 3 | [screenshot](docs/w3c/contact.png) |
+| Thank you | 0 | 3 | [screenshot](docs/w3c/contact-thanks.png) |
+
+Checked with the [W3C Nu HTML Checker](https://validator.w3.org/nu/) (vnu 26.11.4) on the live site, 5 November 2026. To re-check a page, open `https://validator.w3.org/nu/?doc=` followed by the page URL.
+
+Every warning is "The `list` role is unnecessary for element `ul`/`ol`". That's intentional: these lists have their bullets removed with CSS, and Safari's VoiceOver stops announcing a list as a list when that happens. `role="list"` restores it.
+
 ## Features
 
 - Two pages: home and contact, plus a thank-you page after the form.
