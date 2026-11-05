@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="design_doc_mode" content="canvas"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"><style>body{margin:0;background:#E9ECEA}a{color:#0B6E4F}a:hover{color:#08513A}.cv-row{display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start;padding:48px 64px 56px 96px;border-bottom:1px solid rgba(0,0,0,.08)}.cv-frame{display:flex;flex-direction:column;gap:12px;position:relative;flex:none}.cv-label{display:flex;gap:10px;align-items:baseline;font:12px/1.3 ui-monospace,Menlo,monospace;color:rgba(0,0,0,.6)}.cv-id{font-weight:600;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px}.cv-card{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.06);overflow:hidden;position:relative}</style></helmet>
+
+<div style="padding:48px 64px 8px 96px;font-family:ui-monospace,Menlo,monospace;color:#1a1a1a;display:flex;flex-direction:column;gap:6px">
+<div style="font:700 20px/1.3 Inter, system-ui, sans-serif">SusuBox — hi-fi mockups</div>
+<div style="font-size:12px;color:rgba(0,0,0,.6)">Source of truth: 01-SUSUBOX-SPEC (updated) · Inter 400/700 · 8px scale · container 72rem · gutters 16 / 32 · pink dashed = TODO</div>
+<a href="SusuBox Prototype.dc.html" style="align-self:flex-start;margin-top:6px;font:700 12px/1 ui-monospace,Menlo,monospace;color:#FFFFFF;background:#0B6E4F;padding:8px 12px;border-radius:6px;text-decoration:none">Open clickable prototype →</a>
+</div>
+
+<div class="cv-row">
+<div class="cv-frame">
+<div class="cv-label"><span class="cv-id">1</span>Home — mobile · 360 × full · susubox-home-mobile.png</div>
+<div style="position:absolute;left:-80px;top:774px;width:72px;border-top:2px dashed #C2185B;font:600 10px/1.3 ui-monospace,Menlo,monospace;color:#C2185B;padding-top:4px">740px fold</div>
+<div class="cv-card" id="home-mobile" data-screen-label="Home mobile" style="width:360px;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;color:#1B1B1B">
+<dc-import name="SusuHeader" hint-size="360px,60px"></dc-import>
+<section style="padding:24px 16px 48px;display:flex;flex-direction:column;gap:16px">
+<p style="margin:0;align-self:flex-start;padding:4px 12px;border-radius:999px;background:#F2A900;color:#1B1B1B;font-size:14px;font-weight:700;line-height:20px;letter-spacing:.08em;text-transform:uppercase">For market traders in Ghana</p>
+<h1 style="margin:0;font-size:32px;line-height:1.15;font-weight:700;letter-spacing:-0.02em;text-wrap:balance">Your daily susu, recorded on WhatsApp</h1>
+<p style="margin:0;font-size:16px;line-height:1.6">Send your contribution by WhatsApp. SusuBox keeps the record, sends you a weekly statement, and helps you show lenders how well you save.</p>
+<div style="display:flex;flex-direction:column;gap:16px;margin-top:8px">
+<a href="#" style="display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;box-sizing:border-box;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg>Start saving on WhatsApp</a>
+<a href="#" style="display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px 24px;box-sizing:border-box;border-radius:12px;border:2px solid #0B6E4F;background:#FFFFFF;color:#0B6E4F;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none">How it works</a>
+</div>
+<p style="margin:0;font-size:14px;line-height:1.5;color:#5A5A5A">No app to download · Works on any phone with WhatsApp</p>
+<div style="margin-top:16px;position:relative;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#C9A57A"><img src="uploads/woman-trader-at-market-stall.jpg" alt="A market trader checks her savings record on her phone" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:51% 40%;display:block"><span style="position:absolute;left:12px;top:12px;font:600 11px/1 ui-monospace,Menlo,monospace;background:#1B1B1B;color:#fff;padding:5px 7px;border-radius:4px">4:5</span></div>
+</section>
+<section style="background:#F4F7F5;padding:48px 16px;display:flex;flex-direction:column;gap:32px">
+<h2 style="margin:0;font-size:24px;line-height:1.25;font-weight:700;letter-spacing:-0.01em;text-wrap:balance">Saving every day, but no record to show for it</h2>
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:16px;align-items:flex-start"><span style="flex:none;width:48px;height:48px;border-radius:12px;background:#FFFFFF;border:1px solid #DDE5E0;display:flex;align-items:center;justify-content:center;color:#0B6E4F"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M10 12l4 4M14 12l-4 4"></path></svg></span><div style="display:flex;flex-direction:column;gap:4px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Paper cards get lost</h3><p style="margin:0;font-size:16px;line-height:1.6">A torn or missing susu card can mean weeks of savings with no proof.</p></div></div>
+<div style="display:flex;gap:16px;align-items:flex-start"><span style="flex:none;width:48px;height:48px;border-radius:12px;background:#FFFFFF;border:1px solid #DDE5E0;display:flex;align-items:center;justify-content:center;color:#0B6E4F"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 18v-7M9.5 18v-7M14.5 18v-7M19 18v-7M12 3l9 5H3z"></path></svg></span><div style="display:flex;flex-direction:column;gap:4px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Banks ask for history</h3><p style="margin:0;font-size:16px;line-height:1.6">Lenders want records. Most traders have none on paper.</p></div></div>
+<div style="display:flex;gap:16px;align-items:flex-start"><span style="flex:none;width:48px;height:48px;border-radius:12px;background:#FFFFFF;border:1px solid #DDE5E0;display:flex;align-items:center;justify-content:center;color:#0B6E4F"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><div style="display:flex;flex-direction:column;gap:4px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">No time to visit a bank</h3><p style="margin:0;font-size:16px;line-height:1.6">Your stall can't close for half a day to queue.</p></div></div>
+</div>
+</section>
+<section id="how-it-works" style="padding:48px 16px;display:flex;flex-direction:column;gap:32px">
+<h2 style="margin:0;font-size:24px;line-height:1.25;font-weight:700;letter-spacing:-0.01em">How SusuBox works</h2>
+<ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:16px;position:relative">
+<li style="position:absolute;left:48px;top:24px;bottom:24px;width:2px;background:#F2A900" aria-hidden="true"></li>
+<li style="position:relative;border:1px solid #DDE5E0;border-radius:12px;background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:16px"><span style="width:48px;height:48px;border-radius:50%;background:#F2A900;color:#1B1B1B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700">1</span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Message us on WhatsApp</h3><p style="margin:0;font-size:16px;line-height:1.6">Say hello and we register you in under five minutes. Just your name, market and phone number.</p></div></li>
+<li style="position:relative;border:1px solid #DDE5E0;border-radius:12px;background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:16px"><span style="width:48px;height:48px;border-radius:50%;background:#F2A900;color:#1B1B1B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700">2</span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Send your daily amount</h3><p style="margin:0;font-size:16px;line-height:1.6">Each day, type what you paid your collector. For example: "Paid 20 cedis".</p></div></li>
+<li style="position:relative;border:1px solid #DDE5E0;border-radius:12px;background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:16px"><span style="width:48px;height:48px;border-radius:50%;background:#F2A900;color:#1B1B1B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700">3</span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Get your weekly statement</h3><p style="margin:0;font-size:16px;line-height:1.6">Every Sunday we send a clear summary of what you saved. Download it any time.</p></div></li>
+</ol>
+<a href="#" style="display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;box-sizing:border-box;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg>Start saving on WhatsApp</a>
+</section>
+<section style="border-top:1px solid #DDE5E0;padding:48px 16px;display:flex;flex-direction:column;gap:24px">
+<h2 style="margin:0;font-size:24px;line-height:1.25;font-weight:700;letter-spacing:-0.01em">Built for how you already work</h2>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:16px">
+<li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.6"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M20 6L9 17l-5-5"></path></svg>Works with your existing susu collector</li>
+<li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.6"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M20 6L9 17l-5-5"></path></svg>Records in English or Twi</li>
+<li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.6"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M20 6L9 17l-5-5"></path></svg>Weekly statements you can share with a lender</li>
+<li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.6"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M20 6L9 17l-5-5"></path></svg>Your data stays private — only you see your record</li>
+</ul>
+<div style="margin-top:8px;position:relative;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:#C9A57A"><img src="uploads/susu-collector-writing-in-a-book.jpg" alt="A susu collector visits a trader at her stall" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 50%;display:block"><span style="position:absolute;left:12px;top:12px;font:600 11px/1 ui-monospace,Menlo,monospace;background:#1B1B1B;color:#fff;padding:5px 7px;border-radius:4px">1:1</span></div>
+</section>
+<section style="background:#0B6E4F;color:#FFFFFF;padding:48px 16px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:40px;line-height:1.1;font-weight:700;letter-spacing:-0.02em">GHS 20</span><span style="font-size:16px;line-height:1.5">average daily contribution</span></div>
+<div style="display:flex;flex-direction:column;gap:4px;border-top:1px solid rgba(255,255,255,.3);padding-top:24px"><span style="font-size:40px;line-height:1.1;font-weight:700;letter-spacing:-0.02em">7 days</span><span style="font-size:16px;line-height:1.5">to your first statement</span></div>
+<div style="display:flex;flex-direction:column;gap:4px;border-top:1px solid rgba(255,255,255,.3);padding-top:24px"><span style="font-size:40px;line-height:1.1;font-weight:700;letter-spacing:-0.02em">0</span><span style="font-size:16px;line-height:1.5">apps to download</span></div>
+</section>
+<section style="padding:64px 16px">
+<figure style="margin:0;display:flex;flex-direction:column;gap:16px">
+<blockquote style="margin:0;font-size:20px;line-height:1.5;font-weight:400">"Before, I kept my susu card in my handbag and prayed it didn't get wet. Now I check my savings on my phone."</blockquote>
+<figcaption style="font-size:14px;line-height:1.5;color:#5A5A5A">— Ama, fabric seller, Kumasi</figcaption>
+</figure>
+</section>
+<section id="faq" style="border-top:1px solid #DDE5E0;padding:48px 16px;display:flex;flex-direction:column;gap:24px">
+<h2 style="margin:0;font-size:24px;line-height:1.25;font-weight:700;letter-spacing:-0.01em">Frequently asked questions</h2>
+<span style="align-self:flex-start;margin-top:-16px;font:600 11px/1.4 ui-monospace,Menlo,monospace;color:#C2185B;border:1px dashed #C2185B;border-radius:4px;padding:2px 6px">TODO: FAQ H2 copy not in spec</span>
+<div style="border-top:1px solid #DDE5E0">
+<div style="border-bottom:1px solid #DDE5E0"><div style="display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 0;box-sizing:border-box;font-size:16px;font-weight:700;line-height:1.4">Is SusuBox a bank?<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M6 15l6-6 6 6"></path></svg></div><p style="margin:0;padding:0 40px 16px 0;font-size:16px;line-height:1.6">No. SusuBox keeps a record of the savings you give your collector. Your money stays with your collector as it always has.</p></div>
+<div style="border-bottom:1px solid #DDE5E0"><div style="display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 0;box-sizing:border-box;font-size:16px;font-weight:700;line-height:1.4">What does it cost?<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M6 9l6 6 6-6"></path></svg></div></div>
+<div style="border-bottom:1px solid #DDE5E0"><div style="display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 0;box-sizing:border-box;font-size:16px;font-weight:700;line-height:1.4">Do I need a smartphone?<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M6 9l6 6 6-6"></path></svg></div></div>
+<div style="border-bottom:1px solid #DDE5E0"><div style="display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 0;box-sizing:border-box;font-size:16px;font-weight:700;line-height:1.4">Can I use it in Twi?<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M6 9l6 6 6-6"></path></svg></div></div>
+<div style="border-bottom:1px solid #DDE5E0"><div style="display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 0;box-sizing:border-box;font-size:16px;font-weight:700;line-height:1.4">Who can see my records?<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M6 9l6 6 6-6"></path></svg></div></div>
+</div>
+</section>
+<section style="background:#F4F7F5;padding:48px 16px;display:flex;flex-direction:column;gap:16px">
+<h2 style="margin:0;font-size:24px;line-height:1.25;font-weight:700;letter-spacing:-0.01em">Start your record today</h2>
+<p style="margin:0;font-size:16px;line-height:1.6">It takes five minutes on WhatsApp.</p>
+<a href="#" style="margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;box-sizing:border-box;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg>Start saving on WhatsApp</a>
+<a href="#" style="display:flex;align-items:center;min-height:48px;font-size:16px;font-weight:700;line-height:1.5;color:#0B6E4F;text-decoration:underline;text-underline-offset:4px">Are you a collector or association? Contact us →</a>
+</section>
+<dc-import name="SusuFooter" hint-size="360px,200px"></dc-import>
+<a href="#" aria-label="Chat with us on WhatsApp" style="position:absolute;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.12),0 6px 16px rgba(0,0,0,.16);z-index:50;color:#FFFFFF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></a>
+</div>
+</div>
+
+<div class="cv-frame">
+<div class="cv-label"><span class="cv-id">2</span>Home — desktop · 1280 × full · susubox-home-desktop.png</div>
+<div class="cv-card" id="home-desktop" data-screen-label="Home desktop" style="width:1280px;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;color:#1B1B1B">
+<dc-import name="SusuHeader" desktop="{{ true }}" hint-size="1280px,72px"></dc-import>
+<section style="padding:64px 32px">
+<div style="max-width:1152px;margin:0 auto;display:grid;grid-template-columns:minmax(0,55fr) minmax(0,45fr);gap:64px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:24px">
+<p style="margin:0;align-self:flex-start;padding:4px 12px;border-radius:999px;background:#F2A900;color:#1B1B1B;font-size:14px;font-weight:700;line-height:20px;letter-spacing:.08em;text-transform:uppercase">For market traders in Ghana</p>
+<h1 style="margin:0;font-size:48px;line-height:1.1;font-weight:700;letter-spacing:-0.025em;text-wrap:balance">Your daily susu, recorded on WhatsApp</h1>
+<p style="margin:0;font-size:18px;line-height:1.6;max-width:34em">Send your contribution by WhatsApp. SusuBox keeps the record, sends you a weekly statement, and helps you show lenders how well you save.</p>
+<div style="display:flex;gap:16px;margin-top:8px">
+<a href="#" style="display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;box-sizing:border-box;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg>Start saving on WhatsApp</a>
+<a href="#" style="display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px 24px;box-sizing:border-box;border-radius:12px;border:2px solid #0B6E4F;background:#FFFFFF;color:#0B6E4F;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none">How it works</a>
+</div>
+<p style="margin:0;font-size:14px;line-height:1.5;color:#5A5A5A">No app to download · Works on any phone with WhatsApp</p>
+</div>
+<div style="position:relative;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#C9A57A"><img src="uploads/woman-trader-at-market-stall.jpg" alt="A market trader checks her savings record on her phone" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:51% 40%;display:block"><span style="position:absolute;left:16px;top:16px;font:600 11px/1 ui-monospace,Menlo,monospace;background:#1B1B1B;color:#fff;padding:5px 7px;border-radius:4px">4:5</span></div>
+</div>
+</section>
+<section style="background:#F4F7F5;padding:64px 32px">
+<div style="max-width:1152px;margin:0 auto;display:flex;flex-direction:column;gap:48px">
+<h2 style="margin:0;font-size:36px;line-height:1.2;font-weight:700;letter-spacing:-0.02em;max-width:20em">Saving every day, but no record to show for it</h2>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px">
+<div style="display:flex;flex-direction:column;gap:16px"><span style="width:48px;height:48px;border-radius:12px;background:#FFFFFF;border:1px solid #DDE5E0;display:flex;align-items:center;justify-content:center;color:#0B6E4F"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M10 12l4 4M14 12l-4 4"></path></svg></span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Paper cards get lost</h3><p style="margin:0;font-size:16px;line-height:1.6">A torn or missing susu card can mean weeks of savings with no proof.</p></div></div>
+<div style="display:flex;flex-direction:column;gap:16px"><span style="width:48px;height:48px;border-radius:12px;background:#FFFFFF;border:1px solid #DDE5E0;display:flex;align-items:center;justify-content:center;color:#0B6E4F"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 18v-7M9.5 18v-7M14.5 18v-7M19 18v-7M12 3l9 5H3z"></path></svg></span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Banks ask for history</h3><p style="margin:0;font-size:16px;line-height:1.6">Lenders want records. Most traders have none on paper.</p></div></div>
+<div style="display:flex;flex-direction:column;gap:16px"><span style="width:48px;height:48px;border-radius:12px;background:#FFFFFF;border:1px solid #DDE5E0;display:flex;align-items:center;justify-content:center;color:#0B6E4F"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">No time to visit a bank</h3><p style="margin:0;font-size:16px;line-height:1.6">Your stall can't close for half a day to queue.</p></div></div>
+</div>
+</div>
+</section>
+<section style="padding:64px 32px">
+<div style="max-width:1152px;margin:0 auto;display:flex;flex-direction:column;gap:48px">
+<h2 style="margin:0;font-size:36px;line-height:1.2;font-weight:700;letter-spacing:-0.02em">How SusuBox works</h2>
+<ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;position:relative">
+<li style="position:absolute;left:48px;right:48px;top:48px;height:2px;background:#F2A900" aria-hidden="true"></li>
+<li style="position:relative;border:1px solid #DDE5E0;border-radius:12px;background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:24px"><span style="width:48px;height:48px;border-radius:50%;background:#F2A900;color:#1B1B1B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700">1</span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Message us on WhatsApp</h3><p style="margin:0;font-size:16px;line-height:1.6">Say hello and we register you in under five minutes. Just your name, market and phone number.</p></div></li>
+<li style="position:relative;border:1px solid #DDE5E0;border-radius:12px;background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:24px"><span style="width:48px;height:48px;border-radius:50%;background:#F2A900;color:#1B1B1B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700">2</span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Send your daily amount</h3><p style="margin:0;font-size:16px;line-height:1.6">Each day, type what you paid your collector. For example: "Paid 20 cedis".</p></div></li>
+<li style="position:relative;border:1px solid #DDE5E0;border-radius:12px;background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:24px"><span style="width:48px;height:48px;border-radius:50%;background:#F2A900;color:#1B1B1B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700">3</span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Get your weekly statement</h3><p style="margin:0;font-size:16px;line-height:1.6">Every Sunday we send a clear summary of what you saved. Download it any time.</p></div></li>
+</ol>
+<a href="#" style="align-self:center;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;box-sizing:border-box;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg>Start saving on WhatsApp</a>
+</div>
+</section>
+<section style="border-top:1px solid #DDE5E0;padding:64px 32px">
+<div style="max-width:1152px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center">
+<div style="position:relative;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:#C9A57A"><img src="uploads/susu-collector-writing-in-a-book.jpg" alt="A susu collector visits a trader at her stall" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 50%;display:block"><span style="position:absolute;left:16px;top:16px;font:600 11px/1 ui-monospace,Menlo,monospace;background:#1B1B1B;color:#fff;padding:5px 7px;border-radius:4px">1:1</span></div>
+<div style="display:flex;flex-direction:column;gap:32px">
+<h2 style="margin:0;font-size:36px;line-height:1.2;font-weight:700;letter-spacing:-0.02em">Built for how you already work</h2>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:16px">
+<li style="display:flex;gap:12px;align-items:flex-start;font-size:18px;line-height:1.6"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:3px"><path d="M20 6L9 17l-5-5"></path></svg>Works with your existing susu collector</li>
+<li style="display:flex;gap:12px;align-items:flex-start;font-size:18px;line-height:1.6"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:3px"><path d="M20 6L9 17l-5-5"></path></svg>Records in English or Twi</li>
+<li style="display:flex;gap:12px;align-items:flex-start;font-size:18px;line-height:1.6"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:3px"><path d="M20 6L9 17l-5-5"></path></svg>Weekly statements you can share with a lender</li>
+<li style="display:flex;gap:12px;align-items:flex-start;font-size:18px;line-height:1.6"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:3px"><path d="M20 6L9 17l-5-5"></path></svg>Your data stays private — only you see your record</li>
+</ul>
+</div>
+</div>
+</section>
+<section style="background:#0B6E4F;color:#FFFFFF;padding:64px 32px">
+<div style="max-width:1152px;margin:0 auto;display:flex;flex-direction:column;gap:32px">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr))">
+<div style="display:flex;flex-direction:column;gap:8px;padding-right:32px"><span style="font-size:48px;line-height:1.1;font-weight:700;letter-spacing:-0.025em">GHS 20</span><span style="font-size:16px;line-height:1.5">average daily contribution</span></div>
+<div style="display:flex;flex-direction:column;gap:8px;padding:0 32px;border-left:1px solid rgba(255,255,255,.3)"><span style="font-size:48px;line-height:1.1;font-weight:700;letter-spacing:-0.025em">7 days</span><span style="font-size:16px;line-height:1.5">to your first statement</span></div>
+<div style="display:flex;flex-direction:column;gap:8px;padding-left:32px;border-left:1px solid rgba(255,255,255,.3)"><span style="font-size:48px;line-height:1.1;font-weight:700;letter-spacing:-0.025em">0</span><span style="font-size:16px;line-height:1.5">apps to download</span></div>
+</div>
+</div>
+</section>
+<section style="padding:96px 32px">
+<figure style="margin:0 auto;max-width:800px;display:flex;flex-direction:column;gap:24px;align-items:center;text-align:center">
+<blockquote style="margin:0;font-size:28px;line-height:1.45;font-weight:400;letter-spacing:-0.01em;text-wrap:balance">"Before, I kept my susu card in my handbag and prayed it didn't get wet. Now I check my savings on my phone."</blockquote>
+<figcaption style="font-size:16px;line-height:1.5;color:#5A5A5A">— Ama, fabric seller, Kumasi</figcaption>
+</figure>
+</section>
+<section style="border-top:1px solid #DDE5E0;padding:64px 32px">
+<div style="max-width:1152px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:64px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:12px"><h2 style="margin:0;font-size:36px;line-height:1.2;font-weight:700;letter-spacing:-0.02em">Frequently asked questions</h2><span style="align-self:flex-start;font:600 11px/1.4 ui-monospace,Menlo,monospace;color:#C2185B;border:1px dashed #C2185B;border-radius:4px;padding:2px 6px">TODO: FAQ H2 copy not in spec</span></div>
+<div style="border-top:1px solid #DDE5E0">
+<div style="border-bottom:1px solid #DDE5E0"><div style="display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:64px;padding:16px 0;box-sizing:border-box;font-size:18px;font-weight:700;line-height:1.4">Is SusuBox a bank?<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M6 15l6-6 6 6"></path></svg></div><p style="margin:0;padding:0 48px 24px 0;font-size:16px;line-height:1.6">No. SusuBox keeps a record of the savings you give your collector. Your money stays with your collector as it always has.</p></div>
+<div style="border-bottom:1px solid #DDE5E0"><div style="display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:64px;padding:16px 0;box-sizing:border-box;font-size:18px;font-weight:700;line-height:1.4">What does it cost?<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M6 9l6 6 6-6"></path></svg></div></div>
+<div style="border-bottom:1px solid #DDE5E0"><div style="display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:64px;padding:16px 0;box-sizing:border-box;font-size:18px;font-weight:700;line-height:1.4">Do I need a smartphone?<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M6 9l6 6 6-6"></path></svg></div></div>
+<div style="border-bottom:1px solid #DDE5E0"><div style="display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:64px;padding:16px 0;box-sizing:border-box;font-size:18px;font-weight:700;line-height:1.4">Can I use it in Twi?<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M6 9l6 6 6-6"></path></svg></div></div>
+<div style="border-bottom:1px solid #DDE5E0"><div style="display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:64px;padding:16px 0;box-sizing:border-box;font-size:18px;font-weight:700;line-height:1.4">Who can see my records?<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M6 9l6 6 6-6"></path></svg></div></div>
+</div>
+</div>
+</section>
+<section style="background:#F4F7F5;padding:96px 32px">
+<div style="max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center">
+<h2 style="margin:0;font-size:36px;line-height:1.2;font-weight:700;letter-spacing:-0.02em">Start your record today</h2>
+<p style="margin:0;font-size:18px;line-height:1.6">It takes five minutes on WhatsApp.</p>
+<a href="#" style="margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;box-sizing:border-box;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg>Start saving on WhatsApp</a>
+<a href="#" style="display:flex;align-items:center;min-height:48px;font-size:16px;font-weight:700;line-height:1.5;color:#0B6E4F;text-decoration:underline;text-underline-offset:4px">Are you a collector or association? Contact us →</a>
+</div>
+</section>
+<dc-import name="SusuFooter" desktop="{{ true }}" hint-size="1280px,112px"></dc-import>
+<a href="#" aria-label="Chat with us on WhatsApp" style="position:absolute;right:24px;bottom:24px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.12),0 6px 16px rgba(0,0,0,.16);z-index:50;color:#FFFFFF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></a>
+</div>
+</div>
+</div>
+
+<div class="cv-row">
+<div class="cv-frame">
+<div class="cv-label"><span class="cv-id">3</span>Contact — mobile · 360 × full · susubox-contact-mobile.png</div>
+<div class="cv-card" id="contact-mobile" data-screen-label="Contact mobile" style="width:360px;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;color:#1B1B1B">
+<dc-import name="SusuHeader" current="contact" hint-size="360px,60px"></dc-import>
+<main style="padding:32px 16px 48px;display:flex;flex-direction:column;gap:16px">
+<h1 style="margin:0;font-size:32px;line-height:1.15;font-weight:700;letter-spacing:-0.02em">Talk to us</h1>
+<p style="margin:0;font-size:16px;line-height:1.6">For collectors, market associations and partners. Traders, the fastest way to reach us is WhatsApp.</p>
+<a href="#" style="margin:8px 0 16px;display:flex;align-items:center;gap:16px;min-height:72px;padding:16px;box-sizing:border-box;border:2px solid #0B6E4F;border-radius:12px;background:#FFFFFF;color:#0B6E4F;text-decoration:none"><span style="flex:none;width:40px;height:40px;border-radius:50%;background:#25D366;color:#FFFFFF;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></span><span style="font-size:16px;font-weight:700;line-height:1.4">Prefer WhatsApp? Chat with us now →</span></a>
+<dc-import name="SusuForm" state="empty" hint-size="328px,820px"></dc-import>
+<div style="margin-top:32px;background:#F4F7F5;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px;font-size:16px;line-height:1.5">
+<div style="display:flex;gap:12px;align-items:flex-start"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Office hours: Mon–Sat, 7am–6pm</div>
+<a href="#" style="display:flex;gap:12px;align-items:center;min-height:48px;margin:-12px 0;color:#0B6E4F;font-weight:700;text-decoration:underline;text-underline-offset:3px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>hello@susubox.example</a>
+</div>
+</main>
+<dc-import name="SusuFooter" hint-size="360px,200px"></dc-import>
+<a href="#" aria-label="Chat with us on WhatsApp" style="position:absolute;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.12),0 6px 16px rgba(0,0,0,.16);z-index:50;color:#FFFFFF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></a>
+</div>
+</div>
+
+<div class="cv-frame">
+<div class="cv-label"><span class="cv-id">4</span>Contact — desktop · 1280 × full · susubox-contact-desktop.png</div>
+<div class="cv-card" id="contact-desktop" data-screen-label="Contact desktop" style="width:1280px;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;color:#1B1B1B">
+<dc-import name="SusuHeader" desktop="{{ true }}" current="contact" hint-size="1280px,72px"></dc-import>
+<main style="padding:64px 32px 96px">
+<div style="max-width:1152px;margin:0 auto;display:grid;grid-template-columns:minmax(0,640px) minmax(0,1fr);gap:96px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:16px">
+<h1 style="margin:0;font-size:48px;line-height:1.1;font-weight:700;letter-spacing:-0.025em">Talk to us</h1>
+<p style="margin:0;font-size:18px;line-height:1.6">For collectors, market associations and partners. Traders, the fastest way to reach us is WhatsApp.</p>
+<a href="#" style="margin:16px 0 24px;display:flex;align-items:center;gap:16px;min-height:72px;padding:16px 24px;box-sizing:border-box;border:2px solid #0B6E4F;border-radius:12px;background:#FFFFFF;color:#0B6E4F;text-decoration:none"><span style="flex:none;width:40px;height:40px;border-radius:50%;background:#25D366;color:#FFFFFF;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></span><span style="font-size:18px;font-weight:700;line-height:1.4">Prefer WhatsApp? Chat with us now →</span></a>
+<dc-import name="SusuForm" state="empty" hint-size="640px,820px"></dc-import>
+</div>
+<aside style="margin-top:176px;background:#F4F7F5;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:16px;font-size:16px;line-height:1.5">
+<div style="display:flex;gap:12px;align-items:flex-start"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Office hours: Mon–Sat, 7am–6pm</div>
+<a href="#" style="display:flex;gap:12px;align-items:center;min-height:48px;margin:-12px 0;color:#0B6E4F;font-weight:700;text-decoration:underline;text-underline-offset:3px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>hello@susubox.example</a>
+</aside>
+</div>
+</main>
+<dc-import name="SusuFooter" desktop="{{ true }}" hint-size="1280px,112px"></dc-import>
+<a href="#" aria-label="Chat with us on WhatsApp" style="position:absolute;right:24px;bottom:24px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.12),0 6px 16px rgba(0,0,0,.16);z-index:50;color:#FFFFFF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></a>
+</div>
+</div>
+</div>
+
+<div class="cv-row">
+<div class="cv-frame">
+<div class="cv-label"><span class="cv-id">5</span>Contact form states — mobile · 5 × 360 · susubox-form-states.png</div>
+<div class="cv-card" id="form-states" data-screen-label="Form states" style="display:flex;gap:1px;background:#DDE5E0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;color:#1B1B1B">
+<div style="width:360px;background:#FFFFFF;position:relative;align-self:stretch">
+<div style="padding:12px 16px;background:#F4F7F5;border-bottom:1px solid #DDE5E0;font:600 12px/1.3 ui-monospace,Menlo,monospace;color:#1B1B1B">5a · Empty</div>
+<div style="padding:24px 16px 104px"><dc-import name="SusuForm" state="empty" hint-size="328px,820px"></dc-import></div>
+<a href="#" aria-label="Chat with us on WhatsApp" style="position:absolute;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.12),0 6px 16px rgba(0,0,0,.16);color:#FFFFFF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></a>
+</div>
+<div style="width:360px;background:#FFFFFF;position:relative;align-self:stretch">
+<div style="padding:12px 16px;background:#F4F7F5;border-bottom:1px solid #DDE5E0;font:600 12px/1.3 ui-monospace,Menlo,monospace;color:#1B1B1B">5b · Field error (phone, on blur)</div>
+<div style="padding:24px 16px 104px"><dc-import name="SusuForm" state="error" hint-size="328px,900px"></dc-import></div>
+<a href="#" aria-label="Chat with us on WhatsApp" style="position:absolute;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.12),0 6px 16px rgba(0,0,0,.16);color:#FFFFFF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></a>
+</div>
+<div style="width:360px;background:#FFFFFF;position:relative;align-self:stretch">
+<div style="padding:12px 16px;background:#F4F7F5;border-bottom:1px solid #DDE5E0;font:600 12px/1.3 ui-monospace,Menlo,monospace;color:#1B1B1B">5c · Submitting</div>
+<div style="padding:24px 16px 104px"><dc-import name="SusuForm" state="sending" hint-size="328px,820px"></dc-import></div>
+<a href="#" aria-label="Chat with us on WhatsApp" style="position:absolute;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.12),0 6px 16px rgba(0,0,0,.16);color:#FFFFFF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></a>
+</div>
+<div style="width:360px;background:#FFFFFF;position:relative;align-self:stretch;display:flex;flex-direction:column">
+<div style="padding:12px 16px;background:#F4F7F5;border-bottom:1px solid #DDE5E0;font:600 12px/1.3 ui-monospace,Menlo,monospace;color:#1B1B1B">5d · Success → /contact/thanks/</div>
+<dc-import name="SusuHeader" current="contact" hint-size="360px,60px"></dc-import>
+<main style="padding:48px 16px;display:flex;flex-direction:column;gap:24px;flex:1">
+<span style="width:56px;height:56px;border-radius:50%;background:#E3F0EA;color:#0B6E4F;display:flex;align-items:center;justify-content:center"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>
+<h1 style="margin:0;font-size:32px;line-height:1.15;font-weight:700;letter-spacing:-0.02em;text-wrap:balance">Thank you — we'll be in touch within one working day.</h1>
+<a href="#" style="display:flex;align-items:center;justify-content:center;min-height:48px;padding:12px 24px;box-sizing:border-box;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none">Back to home</a>
+</main>
+<dc-import name="SusuFooter" hint-size="360px,200px"></dc-import>
+<a href="#" aria-label="Chat with us on WhatsApp" style="position:absolute;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.12),0 6px 16px rgba(0,0,0,.16);color:#FFFFFF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></a>
+</div>
+<div style="width:360px;background:#FFFFFF;position:relative;align-self:stretch">
+<div style="padding:12px 16px;background:#F4F7F5;border-bottom:1px solid #DDE5E0;font:600 12px/1.3 ui-monospace,Menlo,monospace;color:#1B1B1B">5e · Submission failed</div>
+<div style="padding:24px 16px 104px"><dc-import name="SusuForm" state="failed" hint-size="328px,960px"></dc-import></div>
+<a href="#" aria-label="Chat with us on WhatsApp" style="position:absolute;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.12),0 6px 16px rgba(0,0,0,.16);color:#FFFFFF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></a>
+</div>
+</div>
+</div>
+
+<div class="cv-frame">
+<div class="cv-label"><span class="cv-id">6</span>Mobile menu overlay open · 360 × 740, full screen · susubox-nav-mobile.png</div>
+<div class="cv-card" id="nav-mobile" data-screen-label="Nav mobile" style="width:360px;height:740px;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;color:#1B1B1B;display:flex;flex-direction:column;background:#FFFFFF">
+<div style="flex:none;height:60px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #DDE5E0">
+<a href="#" style="display:flex;align-items:center;min-height:48px;font-size:20px;font-weight:700;color:#0B6E4F;text-decoration:none;letter-spacing:-0.01em">SusuBox</a>
+<span role="button" aria-label="Close menu" style="width:48px;height:48px;box-sizing:border-box;border:1px solid #7C8C84;border-radius:12px;background:#FFFFFF;color:#1B1B1B;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>
+</div>
+<nav style="flex:1;padding:8px 16px">
+<a href="#" style="display:flex;align-items:center;justify-content:space-between;min-height:64px;border-bottom:1px solid #DDE5E0;color:#1B1B1B;font-size:24px;font-weight:700;line-height:1.25;text-decoration:none">How it works<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></a>
+<a href="#" style="display:flex;align-items:center;justify-content:space-between;min-height:64px;border-bottom:1px solid #DDE5E0;color:#1B1B1B;font-size:24px;font-weight:700;line-height:1.25;text-decoration:none">FAQ<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></a>
+<a href="#" style="display:flex;align-items:center;justify-content:space-between;min-height:64px;border-bottom:1px solid #DDE5E0;color:#1B1B1B;font-size:24px;font-weight:700;line-height:1.25;text-decoration:none">Contact<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></a>
+</nav>
+<div style="flex:none;padding:16px 16px 24px;border-top:1px solid #DDE5E0;display:flex;flex-direction:column;gap:8px">
+<a href="#" style="display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;box-sizing:border-box;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg>Start saving on WhatsApp</a>
+<a href="#" style="display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;font-size:16px;font-weight:700;color:#0B6E4F;text-decoration:underline;text-underline-offset:3px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>hello@susubox.example</a>
+</div>
+</div>
+<div style="font:11px/1.6 ui-monospace,Menlo,monospace;color:#C2185B;max-width:360px">Full-screen &lt;dialog&gt; covers header + floating WhatsApp button (hidden while open). ✕ sits exactly where the Menu button was. Opened from Home, so no link is current; on Contact, "Contact" gets aria-current + green underline. Footer repeats these links as the no-JS fallback (#footer-nav).</div>
+</div>
+</div>
+
+<div class="cv-row">
+<div class="cv-frame">
+<div class="cv-label"><span class="cv-id">7</span>Component sheet · 1280 · susubox-components.png</div>
+<div class="cv-card" id="components" data-screen-label="Components" style="width:1280px;box-sizing:border-box;padding:64px;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;color:#1B1B1B;display:flex;flex-direction:column;gap:64px">
+
+<div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:36px;line-height:1.2;font-weight:700;letter-spacing:-0.02em;color:#0B6E4F">SusuBox</div><div style="font:12px/1.5 ui-monospace,Menlo,monospace;color:#5A5A5A">Components &amp; tokens · Inter 400 / 700 · radius 12 · min tap target 48 · focus-visible 3px outline</div></div>
+
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:#5A5A5A">01 · Colour tokens</div>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px">
+<div style="border:1px solid #DDE5E0;border-radius:12px;overflow:hidden"><div style="height:88px;background:#0B6E4F"></div><div style="padding:12px 16px;display:flex;flex-direction:column;gap:4px;font:12px/1.5 ui-monospace,Menlo,monospace"><b style="font-family:Inter, sans-serif;font-size:14px">--color-primary</b><span>#0B6E4F</span><span style="color:#5A5A5A">white on it 6.3:1 · AA</span></div></div>
+<div style="border:1px solid #DDE5E0;border-radius:12px;overflow:hidden"><div style="height:88px;background:#08513A"></div><div style="padding:12px 16px;display:flex;flex-direction:column;gap:4px;font:12px/1.5 ui-monospace,Menlo,monospace"><b style="font-family:Inter, sans-serif;font-size:14px">--color-primary-dark</b><span>#08513A</span><span style="color:#5A5A5A">hover · white 9.4:1</span></div></div>
+<div style="border:1px solid #DDE5E0;border-radius:12px;overflow:hidden"><div style="height:88px;background:#F2A900"></div><div style="padding:12px 16px;display:flex;flex-direction:column;gap:4px;font:12px/1.5 ui-monospace,Menlo,monospace"><b style="font-family:Inter, sans-serif;font-size:14px">--color-accent</b><span>#F2A900</span><span style="color:#5A5A5A">fill only · ink on it 8.1:1</span></div></div>
+<div style="border:1px solid #DDE5E0;border-radius:12px;overflow:hidden"><div style="height:88px;background:#1B1B1B"></div><div style="padding:12px 16px;display:flex;flex-direction:column;gap:4px;font:12px/1.5 ui-monospace,Menlo,monospace"><b style="font-family:Inter, sans-serif;font-size:14px">--color-ink</b><span>#1B1B1B</span><span style="color:#5A5A5A">on white 17.2:1</span></div></div>
+<div style="border:1px solid #DDE5E0;border-radius:12px;overflow:hidden"><div style="height:88px;background:#5A5A5A"></div><div style="padding:12px 16px;display:flex;flex-direction:column;gap:4px;font:12px/1.5 ui-monospace,Menlo,monospace"><b style="font-family:Inter, sans-serif;font-size:14px">--color-muted</b><span>#5A5A5A</span><span style="color:#5A5A5A">on white 6.9:1 · on surface 6.4:1</span></div></div>
+<div style="border:1px solid #DDE5E0;border-radius:12px;overflow:hidden"><div style="height:88px;background:#FFFFFF;border-bottom:1px solid #DDE5E0"></div><div style="padding:12px 16px;display:flex;flex-direction:column;gap:4px;font:12px/1.5 ui-monospace,Menlo,monospace"><b style="font-family:Inter, sans-serif;font-size:14px">--color-bg</b><span>#FFFFFF</span><span style="color:#5A5A5A">page</span></div></div>
+<div style="border:1px solid #DDE5E0;border-radius:12px;overflow:hidden"><div style="height:88px;background:#F4F7F5;border-bottom:1px solid #DDE5E0"></div><div style="padding:12px 16px;display:flex;flex-direction:column;gap:4px;font:12px/1.5 ui-monospace,Menlo,monospace"><b style="font-family:Inter, sans-serif;font-size:14px">--color-surface</b><span>#F4F7F5</span><span style="color:#5A5A5A">problem strip, final CTA</span></div></div>
+<div style="border:1px solid #DDE5E0;border-radius:12px;overflow:hidden"><div style="height:88px;background:#DDE5E0"></div><div style="padding:12px 16px;display:flex;flex-direction:column;gap:4px;font:12px/1.5 ui-monospace,Menlo,monospace"><b style="font-family:Inter, sans-serif;font-size:14px">--color-border</b><span>#DDE5E0</span><span style="color:#5A5A5A">decorative dividers only (1.3:1)</span></div></div>
+<div style="border:1px dashed #C2185B;border-radius:12px;overflow:hidden"><div style="height:88px;background:#25D366"></div><div style="padding:12px 16px;display:flex;flex-direction:column;gap:4px;font:12px/1.5 ui-monospace,Menlo,monospace"><b style="font-family:Inter, sans-serif;font-size:14px">WhatsApp green</b><span>#25D366</span><span style="color:#C2185B">brief-mandated · white glyph 2.0:1 — below 3:1</span></div></div>
+<div style="border:1px dashed #C2185B;border-radius:12px;overflow:hidden"><div style="height:88px;background:#7C8C84"></div><div style="padding:12px 16px;display:flex;flex-direction:column;gap:4px;font:12px/1.5 ui-monospace,Menlo,monospace"><b style="font-family:Inter, sans-serif;font-size:14px">--color-border-strong</b><span>#7C8C84</span><span style="color:#C2185B">TODO proposed · input borders 3.5:1</span></div></div>
+<div style="border:1px dashed #C2185B;border-radius:12px;overflow:hidden"><div style="height:88px;background:#B3261E"></div><div style="padding:12px 16px;display:flex;flex-direction:column;gap:4px;font:12px/1.5 ui-monospace,Menlo,monospace"><b style="font-family:Inter, sans-serif;font-size:14px">--color-error</b><span>#B3261E · bg #FCEDEC</span><span style="color:#C2185B">TODO proposed · on white 6.6:1</span></div></div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:#5A5A5A">02 · Type scale — Inter 400 / 700</div>
+<div style="display:flex;flex-direction:column;border-top:1px solid #DDE5E0">
+<div style="display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid #DDE5E0"><div style="font:12px/1.6 ui-monospace,Menlo,monospace;color:#5A5A5A">H1 · 700<br>2rem / 32px → 3rem / 48px<br>lh 1.15 → 1.1 · −0.02em</div><div style="font-size:48px;line-height:1.1;font-weight:700;letter-spacing:-0.025em">Your daily susu, recorded</div></div>
+<div style="display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid #DDE5E0"><div style="font:12px/1.6 ui-monospace,Menlo,monospace;color:#5A5A5A">H2 · 700<br>1.5rem / 24px → 2.25rem / 36px<br>lh 1.25 → 1.2</div><div style="font-size:36px;line-height:1.2;font-weight:700;letter-spacing:-0.02em">How SusuBox works</div></div>
+<div style="display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid #DDE5E0"><div style="font:12px/1.6 ui-monospace,Menlo,monospace;color:#5A5A5A">H3 · 700<br>1.25rem / 20px (all sizes)<br>lh 1.3</div><div style="font-size:20px;line-height:1.3;font-weight:700">Send your daily amount</div></div>
+<div style="display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid #DDE5E0"><div style="font:12px/1.6 ui-monospace,Menlo,monospace;color:#5A5A5A">Lead · 400 (≥768 only)<br>1.125rem / 18px · lh 1.6<br>hero para, FAQ q 700</div><div style="font-size:18px;line-height:1.6">Send your contribution by WhatsApp. SusuBox keeps the record.</div></div>
+<div style="display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid #DDE5E0"><div style="font:12px/1.6 ui-monospace,Menlo,monospace;color:#5A5A5A">Body · 400 / 700<br>1rem / 16px · lh 1.6</div><div style="font-size:16px;line-height:1.6">Each day, type what you paid your collector. <b>Labels and buttons use 700.</b></div></div>
+<div style="display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid #DDE5E0"><div style="font:12px/1.6 ui-monospace,Menlo,monospace;color:#5A5A5A">Small · 400<br>0.875rem / 14px · lh 1.5<br>trust line, hints, footer</div><div style="font-size:14px;line-height:1.5;color:#5A5A5A">No app to download · Works on any phone with WhatsApp</div></div>
+<div style="display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:center;padding:20px 0;border-bottom:1px solid #DDE5E0"><div style="font:12px/1.6 ui-monospace,Menlo,monospace;color:#5A5A5A">Eyebrow · 700 caps<br>0.875rem / 14px · +0.08em<br>gold fill, ink text</div><div><span style="display:inline-block;padding:4px 12px;border-radius:999px;background:#F2A900;color:#1B1B1B;font-size:14px;font-weight:700;line-height:20px;letter-spacing:.08em;text-transform:uppercase">For market traders in Ghana</span></div></div>
+<div style="display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid #DDE5E0"><div style="font:12px/1.6 ui-monospace,Menlo,monospace;color:#5A5A5A">Stat · 700<br>2.5rem / 40px → 3rem / 48px<br>lh 1.1</div><div style="font-size:48px;line-height:1.1;font-weight:700;letter-spacing:-0.025em;color:#0B6E4F">GHS 20</div></div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px">
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:#5A5A5A">03 · Spacing — 8px base</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;font:12px/1 ui-monospace,Menlo,monospace"><span>--space-1 · 8</span><span style="height:16px;width:8px;background:#0B6E4F;border-radius:2px"></span></div>
+<div style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;font:12px/1 ui-monospace,Menlo,monospace"><span>--space-2 · 16</span><span style="height:16px;width:16px;background:#0B6E4F;border-radius:2px"></span></div>
+<div style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;font:12px/1 ui-monospace,Menlo,monospace"><span>--space-3 · 24</span><span style="height:16px;width:24px;background:#0B6E4F;border-radius:2px"></span></div>
+<div style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;font:12px/1 ui-monospace,Menlo,monospace"><span>--space-4 · 32</span><span style="height:16px;width:32px;background:#0B6E4F;border-radius:2px"></span></div>
+<div style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;font:12px/1 ui-monospace,Menlo,monospace"><span>--space-6 · 48</span><span style="height:16px;width:48px;background:#0B6E4F;border-radius:2px"></span></div>
+<div style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;font:12px/1 ui-monospace,Menlo,monospace"><span>--space-8 · 64</span><span style="height:16px;width:64px;background:#0B6E4F;border-radius:2px"></span></div>
+</div>
+<div style="font:12px/1.7 ui-monospace,Menlo,monospace;color:#5A5A5A">Section padding: 48 mobile / 64 desktop (96 for testimonial &amp; final CTA)<br>Gutters: 16 mobile / 32 desktop · container 72rem (1152)<br>Heading → content: 24–32 mobile / 48 desktop · card gap 16 / 32</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:#5A5A5A">04 · Icons — 24 grid, 2px stroke, inline SVG</div>
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;color:#0B6E4F">
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><span style="width:56px;height:56px;border:1px solid #DDE5E0;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">whatsapp</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><span style="width:56px;height:56px;border:1px solid #DDE5E0;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">menu</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><span style="width:56px;height:56px;border:1px solid #DDE5E0;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">close</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><span style="width:56px;height:56px;border:1px solid #DDE5E0;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">chevron-down</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><span style="width:56px;height:56px;border:1px solid #DDE5E0;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">chevron-right</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><span style="width:56px;height:56px;border:1px solid #DDE5E0;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">check</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><span style="width:56px;height:56px;border:1px solid #DDE5E0;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M10 12l4 4M14 12l-4 4"></path></svg></span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">card-lost</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><span style="width:56px;height:56px;border:1px solid #DDE5E0;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 18v-7M9.5 18v-7M14.5 18v-7M19 18v-7M12 3l9 5H3z"></path></svg></span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">bank</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><span style="width:56px;height:56px;border:1px solid #DDE5E0;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">clock</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><span style="width:56px;height:56px;border:1px solid #DDE5E0;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">mail</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><span style="width:56px;height:56px;border:1px solid #DDE5E0;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#B3261E"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5M12 16.5v.01"></path></svg></span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">alert</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><span style="width:56px;height:56px;border:1px solid #DDE5E0;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"></path></svg></span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">loader</span></div>
+</div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:#5A5A5A">05 · Buttons — min-height 48 · padding 12 / 24 · radius 12 · 1rem 700</div>
+<div style="display:grid;grid-template-columns:120px repeat(4,minmax(0,1fr));gap:24px;align-items:center">
+<span></span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">default</span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">hover · #08513A</span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">focus-visible · 3px outline, 3px offset</span><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">disabled · #E4EAE6 / #5A5A5A</span>
+<span style="font:12px/1.4 ui-monospace,Menlo,monospace;color:#5A5A5A">Primary</span>
+<span style="justify-self:start;display:flex;align-items:center;gap:8px;min-height:48px;padding:12px 24px;box-sizing:border-box;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5">Send message</span>
+<span style="justify-self:start;display:flex;align-items:center;gap:8px;min-height:48px;padding:12px 24px;box-sizing:border-box;border-radius:12px;background:#08513A;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5">Send message</span>
+<span style="justify-self:start;display:flex;align-items:center;gap:8px;min-height:48px;padding:12px 24px;box-sizing:border-box;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5;outline:3px solid #1B1B1B;outline-offset:3px">Send message</span>
+<span style="justify-self:start;display:flex;align-items:center;gap:8px;min-height:48px;padding:12px 24px;box-sizing:border-box;border-radius:12px;background:#E4EAE6;color:#5A5A5A;font-size:16px;font-weight:700;line-height:1.5">Send message</span>
+<span style="font:12px/1.4 ui-monospace,Menlo,monospace;color:#5A5A5A">Secondary<br>2px border</span>
+<span style="justify-self:start;display:flex;align-items:center;min-height:48px;padding:10px 24px;box-sizing:border-box;border-radius:12px;border:2px solid #0B6E4F;background:#FFFFFF;color:#0B6E4F;font-size:16px;font-weight:700;line-height:1.5">How it works</span>
+<span style="justify-self:start;display:flex;align-items:center;min-height:48px;padding:10px 24px;box-sizing:border-box;border-radius:12px;border:2px solid #08513A;background:#F4F7F5;color:#08513A;font-size:16px;font-weight:700;line-height:1.5">How it works</span>
+<span style="justify-self:start;display:flex;align-items:center;min-height:48px;padding:10px 24px;box-sizing:border-box;border-radius:12px;border:2px solid #0B6E4F;background:#FFFFFF;color:#0B6E4F;font-size:16px;font-weight:700;line-height:1.5;outline:3px solid #1B1B1B;outline-offset:3px">How it works</span>
+<span style="justify-self:start;display:flex;align-items:center;min-height:48px;padding:10px 24px;box-sizing:border-box;border-radius:12px;border:2px solid #C5CFC9;background:#FFFFFF;color:#5A5A5A;font-size:16px;font-weight:700;line-height:1.5">How it works</span>
+<span style="font:12px/1.4 ui-monospace,Menlo,monospace;color:#5A5A5A">Text link</span>
+<span style="justify-self:start;display:flex;align-items:center;min-height:48px;font-size:16px;font-weight:700;color:#0B6E4F;text-decoration:underline;text-underline-offset:4px">Contact us →</span>
+<span style="justify-self:start;display:flex;align-items:center;min-height:48px;font-size:16px;font-weight:700;color:#08513A;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px">Contact us →</span>
+<span style="justify-self:start;display:flex;align-items:center;min-height:48px;padding:0 4px;border-radius:4px;font-size:16px;font-weight:700;color:#0B6E4F;text-decoration:underline;text-underline-offset:4px;outline:3px solid #1B1B1B;outline-offset:2px">Contact us →</span>
+<span style="font:11px/1.5 ui-monospace,Menlo,monospace;color:#5A5A5A">—</span>
+</div>
+<div style="font:12px/1.6 ui-monospace,Menlo,monospace;color:#5A5A5A">Mobile: primary &amp; secondary go full-width, stacked with 16 gap. WhatsApp CTAs carry the 20px whatsapp glyph, 8 gap. Focus ring uses ink (#1B1B1B) so it reads on white, surface and green.</div>
+</div>
+
+<div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px">
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:#5A5A5A">06 · Form inputs — 48 tall · padding 12 / 16 · label 1rem 700, 8 gap</div>
+<div style="display:flex;flex-direction:column;gap:24px;max-width:400px">
+<div style="display:flex;flex-direction:column;gap:8px"><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">default · 1px #7C8C84</span><label style="font-size:16px;font-weight:700;line-height:1.4">Full name</label><div style="min-height:48px;box-sizing:border-box;border:1px solid #7C8C84;border-radius:12px;padding:11px 16px;font-size:16px;line-height:1.6"></div></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">focus · 2px #0B6E4F + 3px ink outline</span><label style="font-size:16px;font-weight:700;line-height:1.4">Full name</label><div style="min-height:48px;box-sizing:border-box;border:2px solid #0B6E4F;border-radius:12px;padding:10px 15px;font-size:16px;line-height:1.6;outline:3px solid #1B1B1B;outline-offset:2px">Ama Serwaa<span style="display:inline-block;width:2px;height:18px;background:#1B1B1B;vertical-align:-3px;margin-left:1px"></span></div></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="font:11px/1 ui-monospace,Menlo,monospace;color:#5A5A5A">error · 2px #B3261E + icon + message (aria-live)</span><label style="font-size:16px;font-weight:700;line-height:1.4">Phone number</label><div style="min-height:48px;box-sizing:border-box;border:2px solid #B3261E;border-radius:12px;padding:10px 15px;font-size:16px;line-height:1.6">24 123 456</div><div style="display:flex;gap:8px;align-items:flex-start;color:#B3261E;font-size:16px;line-height:1.5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5M12 16.5v.01"></path></svg><span>Enter a Ghana phone number, e.g. 024 123 4567</span></div></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:#5A5A5A">07 · WhatsApp button</div>
+<div style="display:flex;gap:48px;align-items:center">
+<div style="position:relative;width:200px;height:200px;background:#F4F7F5;border-radius:12px;border:1px solid #DDE5E0">
+<span style="position:absolute;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.12),0 6px 16px rgba(0,0,0,.16);color:#FFFFFF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></span>
+<span style="position:absolute;right:0;bottom:44px;width:16px;border-top:1px solid #C2185B"></span>
+<span style="position:absolute;right:44px;bottom:0;height:16px;border-left:1px solid #C2185B"></span>
+<span style="position:absolute;right:20px;bottom:76px;font:600 10px/1 ui-monospace,Menlo,monospace;color:#C2185B">56</span>
+<span style="position:absolute;left:12px;top:12px;font:10px/1.5 ui-monospace,Menlo,monospace;color:#C2185B">16 from edges (mobile)<br>24 at ≥768px</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;font:12px/1.7 ui-monospace,Menlo,monospace;color:#1B1B1B">
+<span>56 × 56 circle · #25D366 · white 24px glyph</span>
+<span>shadow 0 2 4 / 0 6 16 rgba(0,0,0,.12–.16)</span>
+<span>hover / focus: scale 1.05 (reduced-motion: none)</span>
+<span>focus-visible: 3px ink outline, 3px offset</span>
+<span>z-index 50 · bottom: max(16px, safe-area)</span>
+<span>footer padding-bottom 88 on mobile</span>
+<span>aria-label "Chat with us on WhatsApp"</span>
+</div>
+</div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:#5A5A5A">08 · Cards</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:8px"><span style="font:11px/1.5 ui-monospace,Menlo,monospace;color:#5A5A5A">StepCard · padding 24 · 1px border · gap 24 (16 mobile) · number 48 gold, 1.25rem 700</span>
+<div style="border:1px solid #DDE5E0;border-radius:12px;background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:24px"><span style="width:48px;height:48px;border-radius:50%;background:#F2A900;color:#1B1B1B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700">2</span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Send your daily amount</h3><p style="margin:0;font-size:16px;line-height:1.6">Each day, type what you paid your collector. For example: "Paid 20 cedis".</p></div></div></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="font:11px/1.5 ui-monospace,Menlo,monospace;color:#5A5A5A">Problem item · icon tile 48, radius 12 · on --color-surface</span>
+<div style="background:#F4F7F5;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px"><span style="width:48px;height:48px;border-radius:12px;background:#FFFFFF;border:1px solid #DDE5E0;display:flex;align-items:center;justify-content:center;color:#0B6E4F"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">No time to visit a bank</h3><p style="margin:0;font-size:16px;line-height:1.6">Your stall can't close for half a day to queue.</p></div></div></div>
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:8px"><span style="font:11px/1.5 ui-monospace,Menlo,monospace;color:#5A5A5A">WhatsApp card · 2px primary border · min-height 72 · padding 16</span>
+<div style="display:flex;align-items:center;gap:16px;min-height:72px;padding:16px;box-sizing:border-box;border:2px solid #0B6E4F;border-radius:12px;background:#FFFFFF;color:#0B6E4F"><span style="flex:none;width:40px;height:40px;border-radius:50%;background:#25D366;color:#FFFFFF;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></span><span style="font-size:16px;font-weight:700;line-height:1.4">Prefer WhatsApp? Chat with us now →</span></div></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="font:11px/1.5 ui-monospace,Menlo,monospace;color:#5A5A5A">FAQ item · &lt;details&gt; · summary min-height 56 (64 desktop) · chevron flips when open</span>
+<div style="border-top:1px solid #DDE5E0;border-bottom:1px solid #DDE5E0"><div style="display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 0;box-sizing:border-box;font-size:16px;font-weight:700">Can I use it in Twi?<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"></path></svg></div><p style="margin:0;padding:0 40px 16px 0;font-size:16px;line-height:1.6">Yes. You can send your messages in English or Twi.</p></div></div>
+</div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:16px;border:1px dashed #C2185B;border-radius:12px;padding:24px 32px">
+<div style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:#C2185B">Notes &amp; TODOs</div>
+<ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font:12px/1.6 ui-monospace,Menlo,monospace;color:#1B1B1B">
+<li>Gold text on white is 2.1:1 (fails AA) — eyebrow is a gold chip with ink text (8.1:1); gold never used as text colour.</li>
+<li>--color-border (#DDE5E0) is 1.3:1 — too faint for form controls; inputs use proposed --color-border-strong #7C8C84 (3.5:1). Confirm.</li>
+<li>Error colour, error copy and FAQ section H2 are not in the spec — placeholders shown, marked TODO.</li>
+<li>#25D366 + white glyph is 2.0:1 — brief-mandated; accessible name via aria-label. Flag to client.</li>
+<li>All photos are labelled placeholders — source Ghanaian imagery from Unsplash/Pexels; hero 4:5 ≤100 KB, collector 1:1 ≤60 KB.</li>
+<li>WhatsApp number 233000000000 is a placeholder.</li>
+<li>Sticky header on mobile &amp; desktop: position sticky, top 0, z-index 40 (under WhatsApp button 50); --header-h 60px mobile / 72px ≥768; solid white + 1px --color-border bottom; no blur.</li>
+<li>Section links smooth-scroll via CSS (instant with reduced motion); section[id] scroll-margin-top: calc(var(--header-h) + 16px). Mobile menu = full-screen &lt;dialog&gt; (showModal): top bar = header height, ✕ 48×48 in the Menu button's spot; links 1.5rem 700, rows ≥56 (64 used); WhatsApp button + email pinned bottom; 150ms fade; locks page scroll; closes on ✕, Esc, link tap, resize ≥768; floating WhatsApp hidden while open.</li>
+<li>SAMPLE content (confirm with owner before launch): numbers strip figures (GHS 20 · 7 days · 0) and the Ama testimonial — or remove the testimonial section.</li>
+<li>Footer credit per updated standards: "Website by Prince Twumasi Asamoah · GitHub" → github.com/prince-t-asamoah/susubox-site.</li>
+</ul>
+</div>
+
+</div>
+</div>
+</div>
+</x-dc>
+</body>
+</html>

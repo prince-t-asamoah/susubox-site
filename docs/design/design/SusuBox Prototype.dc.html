@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="theme-color" content="#0B6E4F"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"><style>body{margin:0;background:#E9ECEA;-webkit-font-smoothing:antialiased}a{color:#0B6E4F}a:hover{color:#08513A}*{box-sizing:border-box}@keyframes susu-fade{from{opacity:0}to{opacity:1}}@keyframes susu-spin{to{transform:rotate(360deg)}}@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style></helmet>
+<div style="min-height:100vh;background:#E9ECEA;display:flex;flex-direction:column;align-items:center">
+<div role="toolbar" aria-label="Prototype controls" style="position:sticky;top:0;z-index:100;width:100%;background:#1A1A1A;color:#FFFFFF;font:12px/1.3 ui-monospace,Menlo,monospace;display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:10px 16px">
+<span style="font-weight:700;letter-spacing:.06em;background:#C2185B;padding:4px 8px;border-radius:4px">PROTOTYPE CONTROLS</span>
+<span style="opacity:.7">not part of the site</span>
+<span style="display:flex;border:1px solid rgba(255,255,255,.3);border-radius:6px;overflow:hidden">
+<button type="button" onClick="{{ setMobile }}" style="font:inherit;border:0;padding:6px 12px;cursor:pointer;background:{{ mobBtnBg }};color:{{ mobBtnFg }}">Mobile 360</button>
+<button type="button" onClick="{{ setDesktop }}" style="font:inherit;border:0;padding:6px 12px;cursor:pointer;background:{{ deskBtnBg }};color:{{ deskBtnFg }}">Desktop 1280</button>
+</span>
+<button type="button" onClick="{{ fillSample }}" style="font:inherit;border:1px solid rgba(255,255,255,.3);border-radius:6px;padding:6px 12px;background:transparent;color:#FFFFFF;cursor:pointer" style-hover="background:rgba(255,255,255,.12)">Fill form with sample data</button>
+<label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" checked="{{ failMode }}" onChange="{{ toggleFail }}" style="width:16px;height:16px;accent-color:#C2185B;margin:0">Simulate send failure</label>
+<button type="button" onClick="{{ restart }}" style="font:inherit;border:1px solid rgba(255,255,255,.3);border-radius:6px;padding:6px 12px;background:transparent;color:#FFFFFF;cursor:pointer" style-hover="background:rgba(255,255,255,.12)">Restart</button>
+<span style="opacity:.7;margin-left:auto">{{ flowLabel }}</span>
+</div>
+<div style="width:{{ boxW }};height:{{ boxH }};margin:24px 0 32px;flex:none">
+<div style="width:{{ fw }};height:{{ fh }};transform:scale({{ s }});transform-origin:0 0;position:relative;overflow:hidden;background:#FFFFFF;box-shadow:0 1px 3px rgba(0,0,0,.08),0 12px 40px rgba(0,0,0,.12);font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;color:#1B1B1B">
+<div ref="{{ scrollRef }}" style="position:absolute;inset:0;overflow-y:{{ scrollY }};overflow-x:hidden">
+
+<sc-if value="{{ d }}" hint-placeholder-val="{{ false }}">
+<header style="position:sticky;top:0;z-index:40;background:#FFFFFF;border-bottom:1px solid #DDE5E0">
+<div style="max-width:1152px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;box-sizing:content-box">
+<a href="#" onClick="{{ goHome }}" style="display:flex;align-items:center;min-height:48px;font-size:22px;font-weight:700;color:#0B6E4F;text-decoration:none;letter-spacing:-0.01em;border-radius:8px" style-focus="outline:3px solid #1B1B1B;outline-offset:3px">SusuBox</a>
+<nav style="display:flex;gap:8px">
+<a href="#how-it-works" onClick="{{ goHow }}" style="display:flex;align-items:center;min-height:48px;padding:0 16px;border-radius:12px;color:#1B1B1B;font-size:16px;text-decoration:none" style-hover="background:#F4F7F5;color:#0B6E4F" style-focus="outline:3px solid #1B1B1B;outline-offset:2px">How it works</a>
+<a href="#faq" onClick="{{ goFaq }}" style="display:flex;align-items:center;min-height:48px;padding:0 16px;border-radius:12px;color:#1B1B1B;font-size:16px;text-decoration:none" style-hover="background:#F4F7F5;color:#0B6E4F" style-focus="outline:3px solid #1B1B1B;outline-offset:2px">FAQ</a>
+<a href="#contact" onClick="{{ goContact }}" aria-current="{{ contactCurrent }}" style="display:flex;align-items:center;min-height:48px;padding:0 16px;border-radius:12px;color:{{ contactColor }};font-weight:{{ contactWeight }};font-size:16px;text-decoration:{{ contactDeco }};text-decoration-thickness:2px;text-underline-offset:6px" style-hover="background:#F4F7F5;color:#0B6E4F" style-focus="outline:3px solid #1B1B1B;outline-offset:2px">Contact</a>
+</nav>
+</div>
+</header>
+</sc-if>
+<sc-if value="{{ m }}" hint-placeholder-val="{{ true }}">
+<header style="position:sticky;top:0;z-index:40;background:#FFFFFF;border-bottom:1px solid #DDE5E0">
+<div style="height:60px;padding:0 16px;display:flex;align-items:center;justify-content:space-between">
+<a href="#" onClick="{{ goHome }}" style="display:flex;align-items:center;min-height:48px;font-size:20px;font-weight:700;color:#0B6E4F;text-decoration:none;letter-spacing:-0.01em;border-radius:8px" style-focus="outline:3px solid #1B1B1B;outline-offset:3px">SusuBox</a>
+<button id="menu-btn" type="button" onClick="{{ toggleMenu }}" aria-controls="mobile-menu" aria-expanded="{{ menuOpen }}" style="display:flex;align-items:center;gap:8px;min-height:48px;padding:0 16px;border:1px solid #7C8C84;border-radius:12px;background:{{ menuBg }};font-family:inherit;font-size:16px;font-weight:700;color:#1B1B1B;cursor:pointer" style-focus="outline:3px solid #1B1B1B;outline-offset:2px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ menuIcon }}"></path></svg>Menu</button>
+</div>
+
+</header>
+</sc-if>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<main style="animation:susu-fade .16s ease-out">
+<section style="padding:{{ L.heroPad }}">
+<div style="max-width:1152px;margin:0 auto;display:grid;grid-template-columns:{{ L.heroCols }};gap:{{ L.heroGap }};align-items:center">
+<div style="display:flex;flex-direction:column;gap:{{ L.heroStack }}">
+<p style="margin:0;align-self:flex-start;padding:4px 12px;border-radius:999px;background:#F2A900;color:#1B1B1B;font-size:14px;font-weight:700;line-height:20px;letter-spacing:.08em;text-transform:uppercase">For market traders in Ghana</p>
+<h1 style="margin:0;font-size:{{ L.h1 }};line-height:1.12;font-weight:700;letter-spacing:-0.02em;text-wrap:balance">Your daily susu, recorded on WhatsApp</h1>
+<p style="margin:0;font-size:{{ L.lead }};line-height:1.6;max-width:34em">Send your contribution by WhatsApp. SusuBox keeps the record, sends you a weekly statement, and helps you show lenders how well you save.</p>
+<div style="display:flex;flex-direction:{{ L.btnDir }};flex-wrap:wrap;gap:16px;margin-top:8px;white-space:nowrap">
+<a href="#whatsapp" onClick="{{ openWa }}" style="display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none" style-hover="background:#08513A;color:#FFFFFF" style-focus="outline:3px solid #1B1B1B;outline-offset:3px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg>Start saving on WhatsApp</a>
+<a href="#how-it-works" onClick="{{ goHow }}" style="display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px 24px;border-radius:12px;border:2px solid #0B6E4F;background:#FFFFFF;color:#0B6E4F;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none" style-hover="background:#F4F7F5;border-color:#08513A;color:#08513A" style-focus="outline:3px solid #1B1B1B;outline-offset:3px">How it works</a>
+</div>
+<p style="margin:0;font-size:14px;line-height:1.5;color:#5A5A5A">No app to download · Works on any phone with WhatsApp</p>
+</div>
+<div style="position:relative;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#C9A57A;margin-top:{{ L.heroImgTop }}"><img src="uploads/woman-trader-at-market-stall.jpg" alt="A market trader checks her savings record on her phone" width="800" height="1000" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:51% 40%;display:block"></div>
+</div>
+</section>
+
+<section style="background:#F4F7F5;padding:{{ L.sec }}">
+<div style="max-width:1152px;margin:0 auto;display:flex;flex-direction:column;gap:{{ L.headGap }}">
+<h2 style="margin:0;font-size:{{ L.h2 }};line-height:1.22;font-weight:700;letter-spacing:-0.015em;max-width:20em;text-wrap:balance">Saving every day, but no record to show for it</h2>
+<div style="display:grid;grid-template-columns:{{ L.c3 }};gap:{{ L.probGap }}">
+<div style="display:flex;flex-direction:{{ L.probDir }};gap:16px;align-items:flex-start"><span style="flex:none;width:48px;height:48px;border-radius:12px;background:#FFFFFF;border:1px solid #DDE5E0;display:flex;align-items:center;justify-content:center;color:#0B6E4F"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M10 12l4 4M14 12l-4 4"></path></svg></span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Paper cards get lost</h3><p style="margin:0;font-size:16px;line-height:1.6">A torn or missing susu card can mean weeks of savings with no proof.</p></div></div>
+<div style="display:flex;flex-direction:{{ L.probDir }};gap:16px;align-items:flex-start"><span style="flex:none;width:48px;height:48px;border-radius:12px;background:#FFFFFF;border:1px solid #DDE5E0;display:flex;align-items:center;justify-content:center;color:#0B6E4F"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 18v-7M9.5 18v-7M14.5 18v-7M19 18v-7M12 3l9 5H3z"></path></svg></span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Banks ask for history</h3><p style="margin:0;font-size:16px;line-height:1.6">Lenders want records. Most traders have none on paper.</p></div></div>
+<div style="display:flex;flex-direction:{{ L.probDir }};gap:16px;align-items:flex-start"><span style="flex:none;width:48px;height:48px;border-radius:12px;background:#FFFFFF;border:1px solid #DDE5E0;display:flex;align-items:center;justify-content:center;color:#0B6E4F"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">No time to visit a bank</h3><p style="margin:0;font-size:16px;line-height:1.6">Your stall can't close for half a day to queue.</p></div></div>
+</div>
+</div>
+</section>
+
+<section id="how-it-works" style="padding:{{ L.sec }};scroll-margin-top:{{ L.smt }}">
+<div style="max-width:1152px;margin:0 auto;display:flex;flex-direction:column;gap:{{ L.headGap }}">
+<h2 style="margin:0;font-size:{{ L.h2 }};line-height:1.22;font-weight:700;letter-spacing:-0.015em">How SusuBox works</h2>
+<ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:{{ L.c3 }};gap:{{ L.cardGap }};position:relative">
+<li aria-hidden="true" style="position:absolute;left:48px;right:{{ L.lineR }};top:{{ L.lineTop }};bottom:{{ L.lineBot }};width:{{ L.lineW }};height:{{ L.lineH }};background:#F2A900"></li>
+<li style="position:relative;border:1px solid #DDE5E0;border-radius:12px;background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:{{ L.cardInner }}"><span style="width:48px;height:48px;border-radius:50%;background:#F2A900;color:#1B1B1B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700">1</span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Message us on WhatsApp</h3><p style="margin:0;font-size:16px;line-height:1.6">Say hello and we register you in under five minutes. Just your name, market and phone number.</p></div></li>
+<li style="position:relative;border:1px solid #DDE5E0;border-radius:12px;background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:{{ L.cardInner }}"><span style="width:48px;height:48px;border-radius:50%;background:#F2A900;color:#1B1B1B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700">2</span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Send your daily amount</h3><p style="margin:0;font-size:16px;line-height:1.6">Each day, type what you paid your collector. For example: "Paid 20 cedis".</p></div></li>
+<li style="position:relative;border:1px solid #DDE5E0;border-radius:12px;background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:{{ L.cardInner }}"><span style="width:48px;height:48px;border-radius:50%;background:#F2A900;color:#1B1B1B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700">3</span><div style="display:flex;flex-direction:column;gap:8px"><h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700">Get your weekly statement</h3><p style="margin:0;font-size:16px;line-height:1.6">Every Sunday we send a clear summary of what you saved. Download it any time.</p></div></li>
+</ol>
+<a href="#whatsapp" onClick="{{ openWa }}" style="align-self:{{ L.ctaSelf }};display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none" style-hover="background:#08513A;color:#FFFFFF" style-focus="outline:3px solid #1B1B1B;outline-offset:3px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg>Start saving on WhatsApp</a>
+</div>
+</section>
+
+<section style="border-top:1px solid #DDE5E0;padding:{{ L.sec }}">
+<div style="max-width:1152px;margin:0 auto;display:grid;grid-template-columns:{{ L.c2 }};gap:{{ L.heroGap }};align-items:center">
+<div style="display:flex;flex-direction:column;gap:{{ L.listGap }}">
+<h2 style="margin:0;font-size:{{ L.h2 }};line-height:1.22;font-weight:700;letter-spacing:-0.015em">Built for how you already work</h2>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:16px;font-size:{{ L.lead }};line-height:1.6">
+<li style="display:flex;gap:12px;align-items:flex-start"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M20 6L9 17l-5-5"></path></svg>Works with your existing susu collector</li>
+<li style="display:flex;gap:12px;align-items:flex-start"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M20 6L9 17l-5-5"></path></svg>Records in English or Twi</li>
+<li style="display:flex;gap:12px;align-items:flex-start"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M20 6L9 17l-5-5"></path></svg>Weekly statements you can share with a lender</li>
+<li style="display:flex;gap:12px;align-items:flex-start"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M20 6L9 17l-5-5"></path></svg>Your data stays private — only you see your record</li>
+</ul>
+</div>
+<div style="order:{{ L.imgOrder }};position:relative;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:#A9B79A"><img src="uploads/susu-collector-writing-in-a-book.jpg" alt="A susu collector visits a trader at her stall" width="800" height="800" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 50%;display:block"></div>
+</div>
+</section>
+
+<section style="background:#0B6E4F;color:#FFFFFF;padding:{{ L.sec }}">
+<div style="max-width:1152px;margin:0 auto;display:flex;flex-direction:column;gap:32px">
+<div style="display:grid;grid-template-columns:{{ L.c3 }};gap:{{ L.statGap }}">
+<div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:{{ L.stat }};line-height:1.1;font-weight:700;letter-spacing:-0.025em">GHS 20</span><span style="font-size:16px;line-height:1.5">average daily contribution</span></div>
+<div style="display:flex;flex-direction:column;gap:8px;border-style:solid;border-color:rgba(255,255,255,.3);border-width:{{ L.statBW }};padding:{{ L.statPad }}"><span style="font-size:{{ L.stat }};line-height:1.1;font-weight:700;letter-spacing:-0.025em">7 days</span><span style="font-size:16px;line-height:1.5">to your first statement</span></div>
+<div style="display:flex;flex-direction:column;gap:8px;border-style:solid;border-color:rgba(255,255,255,.3);border-width:{{ L.statBW }};padding:{{ L.statPad }}"><span style="font-size:{{ L.stat }};line-height:1.1;font-weight:700;letter-spacing:-0.025em">0</span><span style="font-size:16px;line-height:1.5">apps to download</span></div>
+</div>
+</div>
+</section>
+
+<section style="padding:{{ L.quotePad }}">
+<figure style="margin:0 auto;max-width:800px;display:flex;flex-direction:column;gap:{{ L.quoteGap }};text-align:{{ L.quoteAlign }}">
+<blockquote style="margin:0;font-size:{{ L.quote }};line-height:1.45;font-weight:400;letter-spacing:-0.01em;text-wrap:balance">"Before, I kept my susu card in my handbag and prayed it didn't get wet. Now I check my savings on my phone."</blockquote>
+<figcaption style="font-size:{{ L.capSize }};line-height:1.5;color:#5A5A5A">— Ama, fabric seller, Kumasi</figcaption>
+</figure>
+</section>
+
+<section id="faq" style="border-top:1px solid #DDE5E0;padding:{{ L.sec }};scroll-margin-top:{{ L.smt }}">
+<div style="max-width:1152px;margin:0 auto;display:grid;grid-template-columns:{{ L.faqCols }};gap:{{ L.faqGap }};align-items:start">
+<h2 style="margin:0;font-size:{{ L.h2 }};line-height:1.22;font-weight:700;letter-spacing:-0.015em">Frequently asked questions</h2>
+<div style="border-top:1px solid #DDE5E0">
+<sc-for list="{{ faq }}" as="f" hint-placeholder-count="5">
+<div style="border-bottom:1px solid #DDE5E0">
+<button type="button" onClick="{{ f.toggle }}" aria-expanded="{{ f.open }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:{{ L.faqRow }};padding:12px 0;border:0;background:none;text-align:left;font-family:inherit;font-size:{{ L.faqQ }};font-weight:700;line-height:1.4;color:#1B1B1B;cursor:pointer;border-radius:4px" style-hover="color:#0B6E4F" style-focus="outline:3px solid #1B1B1B;outline-offset:2px">{{ f.q }}<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="{{ f.chev }}"></path></svg></button>
+<sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:0 40px 20px 0;font-size:16px;line-height:1.6">{{ f.a }}</p></sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section style="background:#F4F7F5;padding:{{ L.quotePad }}">
+<div style="max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:16px;align-items:{{ L.ctaAlign }};text-align:{{ L.quoteAlign }}">
+<h2 style="margin:0;font-size:{{ L.h2 }};line-height:1.22;font-weight:700;letter-spacing:-0.015em">Start your record today</h2>
+<p style="margin:0;font-size:{{ L.lead }};line-height:1.6">It takes five minutes on WhatsApp.</p>
+<a href="#whatsapp" onClick="{{ openWa }}" style="margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none" style-hover="background:#08513A;color:#FFFFFF" style-focus="outline:3px solid #1B1B1B;outline-offset:3px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg>Start saving on WhatsApp</a>
+<a href="#contact" onClick="{{ goContact }}" style="display:flex;align-items:center;min-height:48px;font-size:16px;font-weight:700;line-height:1.5;color:#0B6E4F;text-decoration:underline;text-underline-offset:4px;border-radius:4px" style-hover="color:#08513A;text-decoration-thickness:2px" style-focus="outline:3px solid #1B1B1B;outline-offset:2px">Are you a collector or association? Contact us →</a>
+</div>
+</section>
+</main>
+</sc-if>
+
+<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+<main style="padding:{{ L.contactPad }};animation:susu-fade .16s ease-out">
+<div style="max-width:1152px;margin:0 auto;display:grid;grid-template-columns:{{ L.contactCols }};gap:{{ L.contactGap }};align-items:start">
+<div style="display:flex;flex-direction:column;gap:16px">
+<h1 style="margin:0;font-size:{{ L.h1 }};line-height:1.12;font-weight:700;letter-spacing:-0.02em">Talk to us</h1>
+<p style="margin:0;font-size:{{ L.lead }};line-height:1.6">For collectors, market associations and partners. Traders, the fastest way to reach us is WhatsApp.</p>
+<a href="#whatsapp" onClick="{{ openWa }}" style="margin:8px 0 16px;display:flex;align-items:center;gap:16px;min-height:72px;padding:16px;border:2px solid #0B6E4F;border-radius:12px;background:#FFFFFF;color:#0B6E4F;text-decoration:none" style-hover="background:#F4F7F5;color:#08513A" style-focus="outline:3px solid #1B1B1B;outline-offset:3px"><span style="flex:none;width:40px;height:40px;border-radius:50%;background:#25D366;color:#FFFFFF;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></span><span style="font-size:{{ L.lead }};font-weight:700;line-height:1.4">Prefer WhatsApp? Chat with us now →</span></a>
+
+<form name="contact" method="POST" noValidate="{{ true }}" onSubmit="{{ submit }}" style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<label for="f-name" style="font-size:16px;font-weight:700;line-height:1.4">Full name</label>
+<input id="f-name" name="name" type="text" autoComplete="name" required="" value="{{ f.name }}" onChange="{{ on.name }}" onBlur="{{ blur.name }}" readOnly="{{ busy }}" aria-invalid="{{ inv.name }}" style="width:100%;min-height:48px;border:1px solid {{ bc.name }};box-shadow:{{ sh.name }};border-radius:12px;padding:11px 16px;font-family:inherit;font-size:16px;line-height:1.6;color:#1B1B1B;background:#FFFFFF" style-focus="outline:3px solid #1B1B1B;outline-offset:2px;border-color:#0B6E4F">
+<sc-if value="{{ err.name }}" hint-placeholder-val="{{ false }}"><div aria-live="polite" style="display:flex;gap:8px;align-items:flex-start;color:#B3261E;font-size:16px;line-height:1.5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5M12 16.5v.01"></path></svg><span>{{ err.name }}</span></div></sc-if>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<label for="f-phone" style="font-size:16px;font-weight:700;line-height:1.4">Phone number</label>
+<span id="phone-hint" style="font-size:14px;line-height:1.5;color:#5A5A5A;margin-top:-4px">e.g. 024 123 4567 or +233 24 123 4567</span>
+<input id="f-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" required="" aria-describedby="phone-hint" value="{{ f.phone }}" onChange="{{ on.phone }}" onBlur="{{ blur.phone }}" readOnly="{{ busy }}" aria-invalid="{{ inv.phone }}" style="width:100%;min-height:48px;border:1px solid {{ bc.phone }};box-shadow:{{ sh.phone }};border-radius:12px;padding:11px 16px;font-family:inherit;font-size:16px;line-height:1.6;color:#1B1B1B;background:#FFFFFF" style-focus="outline:3px solid #1B1B1B;outline-offset:2px;border-color:#0B6E4F">
+<sc-if value="{{ err.phone }}" hint-placeholder-val="{{ false }}"><div aria-live="polite" style="display:flex;gap:8px;align-items:flex-start;color:#B3261E;font-size:16px;line-height:1.5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5M12 16.5v.01"></path></svg><span>{{ err.phone }}</span></div></sc-if>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<label for="f-email" style="font-size:16px;font-weight:700;line-height:1.4">Email (optional)</label>
+<input id="f-email" name="email" type="email" autoComplete="email" value="{{ f.email }}" onChange="{{ on.email }}" onBlur="{{ blur.email }}" readOnly="{{ busy }}" aria-invalid="{{ inv.email }}" style="width:100%;min-height:48px;border:1px solid {{ bc.email }};box-shadow:{{ sh.email }};border-radius:12px;padding:11px 16px;font-family:inherit;font-size:16px;line-height:1.6;color:#1B1B1B;background:#FFFFFF" style-focus="outline:3px solid #1B1B1B;outline-offset:2px;border-color:#0B6E4F">
+<sc-if value="{{ err.email }}" hint-placeholder-val="{{ false }}"><div aria-live="polite" style="display:flex;gap:8px;align-items:flex-start;color:#B3261E;font-size:16px;line-height:1.5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5M12 16.5v.01"></path></svg><span>{{ err.email }}</span></div></sc-if>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<label for="f-role" style="font-size:16px;font-weight:700;line-height:1.4">I am a…</label>
+<div style="position:relative">
+<select id="f-role" name="role" required="" value="{{ f.role }}" onChange="{{ on.role }}" onBlur="{{ blur.role }}" disabled="{{ busy }}" aria-invalid="{{ inv.role }}" style="width:100%;min-height:48px;border:1px solid {{ bc.role }};box-shadow:{{ sh.role }};border-radius:12px;padding:11px 48px 11px 16px;font-family:inherit;font-size:16px;line-height:1.6;color:#1B1B1B;background:#FFFFFF;appearance:none;-webkit-appearance:none;cursor:pointer" style-focus="outline:3px solid #1B1B1B;outline-offset:2px;border-color:#0B6E4F"><option value=""></option><option>Trader</option><option>Susu collector</option><option>Market association</option><option>Partner</option><option>Other</option></select>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B1B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:12px;top:12px;pointer-events:none"><path d="M6 9l6 6 6-6"></path></svg>
+</div>
+<sc-if value="{{ err.role }}" hint-placeholder-val="{{ false }}"><div aria-live="polite" style="display:flex;gap:8px;align-items:flex-start;color:#B3261E;font-size:16px;line-height:1.5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5M12 16.5v.01"></path></svg><span>{{ err.role }}</span></div></sc-if>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<label for="f-market" style="font-size:16px;font-weight:700;line-height:1.4">Market or town</label>
+<input id="f-market" name="market" type="text" autoComplete="address-level2" value="{{ f.market }}" onChange="{{ on.market }}" readOnly="{{ busy }}" style="width:100%;min-height:48px;border:1px solid #7C8C84;border-radius:12px;padding:11px 16px;font-family:inherit;font-size:16px;line-height:1.6;color:#1B1B1B;background:#FFFFFF" style-focus="outline:3px solid #1B1B1B;outline-offset:2px;border-color:#0B6E4F">
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<label for="f-message" style="font-size:16px;font-weight:700;line-height:1.4">Message</label>
+<textarea id="f-message" name="message" rows="5" required="" value="{{ f.message }}" onChange="{{ on.message }}" onBlur="{{ blur.message }}" readOnly="{{ busy }}" aria-invalid="{{ inv.message }}" style="width:100%;min-height:152px;border:1px solid {{ bc.message }};box-shadow:{{ sh.message }};border-radius:12px;padding:11px 16px;font-family:inherit;font-size:16px;line-height:1.6;color:#1B1B1B;background:#FFFFFF;resize:vertical" style-focus="outline:3px solid #1B1B1B;outline-offset:2px;border-color:#0B6E4F"></textarea>
+<sc-if value="{{ err.message }}" hint-placeholder-val="{{ false }}"><div aria-live="polite" style="display:flex;gap:8px;align-items:flex-start;color:#B3261E;font-size:16px;line-height:1.5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5M12 16.5v.01"></path></svg><span>{{ err.message }}</span></div></sc-if>
+</div>
+<sc-if value="{{ failed }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="display:flex;gap:12px;align-items:flex-start;padding:16px;border:1px solid #B3261E;border-radius:12px;background:#FCEDEC;font-size:16px;line-height:1.5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B3261E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5M12 16.5v.01"></path></svg><span>Something went wrong. Please try again or <a href="#whatsapp" onClick="{{ openWa }}" style="color:#0B6E4F;font-weight:700;text-decoration:underline;text-underline-offset:3px">message us on WhatsApp</a>.</span></div>
+</sc-if>
+<sc-if value="{{ notBusy }}" hint-placeholder-val="{{ true }}">
+<button type="submit" style="align-self:{{ L.submitSelf }};display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;border:0;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-family:inherit;font-size:16px;font-weight:700;line-height:1.5;cursor:pointer" style-hover="background:#08513A" style-focus="outline:3px solid #1B1B1B;outline-offset:3px">Send message</button>
+</sc-if>
+<sc-if value="{{ busy }}" hint-placeholder-val="{{ false }}">
+<button type="button" disabled="" aria-disabled="true" style="align-self:{{ L.submitSelf }};display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;border:0;border-radius:12px;background:#E4EAE6;color:#5A5A5A;font-family:inherit;font-size:16px;font-weight:700;line-height:1.5;cursor:not-allowed"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="animation:susu-spin .9s linear infinite"><path d="M12 3a9 9 0 1 0 9 9"></path></svg>Sending…</button>
+</sc-if>
+</form>
+</div>
+<aside style="margin-top:{{ L.asideTop }};background:#F4F7F5;border-radius:12px;padding:{{ L.asidePad }};display:flex;flex-direction:column;gap:16px;font-size:16px;line-height:1.5">
+<div style="display:flex;gap:12px;align-items:flex-start"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Office hours: Mon–Sat, 7am–6pm</div>
+<a href="mailto:hello@susubox.example" style="display:flex;gap:12px;align-items:center;min-height:48px;margin:-12px 0;min-width:0;overflow-wrap:anywhere;color:#0B6E4F;font-weight:700;text-decoration:underline;text-underline-offset:3px;border-radius:4px" style-focus="outline:3px solid #1B1B1B;outline-offset:2px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>hello@susubox.example</a>
+</aside>
+</div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isThanks }}" hint-placeholder-val="{{ false }}">
+<main style="padding:{{ L.contactPad }};min-height:480px;animation:susu-fade .16s ease-out">
+<div style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:24px;align-items:flex-start">
+<span style="width:56px;height:56px;border-radius:50%;background:#E3F0EA;color:#0B6E4F;display:flex;align-items:center;justify-content:center"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>
+<h1 style="margin:0;font-size:{{ L.h1 }};line-height:1.12;font-weight:700;letter-spacing:-0.02em;text-wrap:balance">Thank you — we'll be in touch within one working day.</h1>
+<a href="#" onClick="{{ goHome }}" style="align-self:{{ L.submitSelf }};display:flex;align-items:center;justify-content:center;min-height:48px;padding:12px 24px;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none" style-hover="background:#08513A;color:#FFFFFF" style-focus="outline:3px solid #1B1B1B;outline-offset:3px">Back to home</a>
+</div>
+</main>
+</sc-if>
+
+<footer style="border-top:1px solid #DDE5E0;background:#FFFFFF;padding:{{ L.footPad }}">
+<div style="max-width:1152px;margin:0 auto;display:flex;flex-direction:{{ L.footDir }};align-items:{{ L.footAlign }};gap:{{ L.footGap }}">
+<a href="#" onClick="{{ goHome }}" style="display:flex;align-items:center;min-height:48px;font-size:18px;font-weight:700;color:#0B6E4F;text-decoration:none;border-radius:4px" style-focus="outline:3px solid #1B1B1B;outline-offset:2px">SusuBox</a>
+<nav id="footer-nav" aria-label="Footer" style="display:flex;flex-wrap:wrap;column-gap:24px"><a href="#how-it-works" onClick="{{ goHow }}" style="display:flex;align-items:center;min-height:48px;color:#1B1B1B;font-size:16px;text-decoration:underline;text-decoration-color:#7C8C84;text-underline-offset:4px;border-radius:4px" style-hover="color:#0B6E4F;text-decoration-color:#0B6E4F" style-focus="outline:3px solid #1B1B1B;outline-offset:2px">How it works</a><a href="#faq" onClick="{{ goFaq }}" style="display:flex;align-items:center;min-height:48px;color:#1B1B1B;font-size:16px;text-decoration:underline;text-decoration-color:#7C8C84;text-underline-offset:4px;border-radius:4px" style-hover="color:#0B6E4F;text-decoration-color:#0B6E4F" style-focus="outline:3px solid #1B1B1B;outline-offset:2px">FAQ</a><a href="#contact" onClick="{{ goContact }}" style="display:flex;align-items:center;min-height:48px;color:#1B1B1B;font-size:16px;text-decoration:underline;text-decoration-color:#7C8C84;text-underline-offset:4px;border-radius:4px" style-hover="color:#0B6E4F;text-decoration-color:#0B6E4F" style-focus="outline:3px solid #1B1B1B;outline-offset:2px">Contact</a></nav>
+<p style="margin:0;font-size:14px;line-height:1.6;color:#5A5A5A">Website by Prince Twumasi Asamoah · <a href="https://github.com/prince-t-asamoah/susubox-site" target="_blank" rel="noopener" style="color:#0B6E4F;font-weight:700;text-decoration:underline;text-underline-offset:3px">GitHub</a></p>
+</div>
+</footer>
+
+</div>
+<sc-if value="{{ showFloat }}" hint-placeholder-val="{{ true }}"><a href="#whatsapp" onClick="{{ openWa }}" aria-label="Chat with us on WhatsApp" style="position:absolute;right:{{ L.waOff }};bottom:{{ L.waOff }};width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.12),0 6px 16px rgba(0,0,0,.16);z-index:50;color:#FFFFFF;transition:transform .15s ease" style-hover="transform:scale(1.05);color:#FFFFFF" style-focus="transform:scale(1.05);outline:3px solid #1B1B1B;outline-offset:3px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg></a></sc-if>
+<sc-if value="{{ menuOverlay }}" hint-placeholder-val="{{ false }}">
+<div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" style="position:absolute;inset:0;z-index:70;background:#FFFFFF;display:flex;flex-direction:column;animation:susu-fade .15s ease-out">
+<div style="flex:none;height:60px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #DDE5E0">
+<a href="#" onClick="{{ goHome }}" style="display:flex;align-items:center;min-height:48px;font-size:20px;font-weight:700;color:#0B6E4F;text-decoration:none;letter-spacing:-0.01em;border-radius:8px" style-focus="outline:3px solid #1B1B1B;outline-offset:3px">SusuBox</a>
+<button type="button" onClick="{{ closeMenu }}" aria-label="Close menu" style="width:48px;height:48px;border:1px solid #7C8C84;border-radius:12px;background:#FFFFFF;color:#1B1B1B;display:flex;align-items:center;justify-content:center;cursor:pointer" style-focus="outline:3px solid #1B1B1B;outline-offset:2px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<nav aria-label="Main" style="flex:1;overflow-y:auto;padding:8px 16px">
+<a id="mm-first" href="#how-it-works" onClick="{{ goHow }}" style="display:flex;align-items:center;justify-content:space-between;min-height:64px;border-bottom:1px solid #DDE5E0;color:#1B1B1B;font-size:24px;font-weight:700;line-height:1.25;text-decoration:none" style-focus="outline:3px solid #1B1B1B;outline-offset:2px">How it works<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></a>
+<a href="#faq" onClick="{{ goFaq }}" style="display:flex;align-items:center;justify-content:space-between;min-height:64px;border-bottom:1px solid #DDE5E0;color:#1B1B1B;font-size:24px;font-weight:700;line-height:1.25;text-decoration:none" style-focus="outline:3px solid #1B1B1B;outline-offset:2px">FAQ<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></a>
+<a href="#contact" onClick="{{ goContact }}" aria-current="{{ contactCurrent }}" style="display:flex;align-items:center;justify-content:space-between;min-height:64px;border-bottom:1px solid #DDE5E0;color:#1B1B1B;font-size:24px;font-weight:700;line-height:1.25;text-decoration:none" style-focus="outline:3px solid #1B1B1B;outline-offset:2px"><span style="text-decoration:{{ contactDeco }};text-decoration-color:#0B6E4F;text-decoration-thickness:3px;text-underline-offset:8px">Contact</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></a>
+</nav>
+<div style="flex:none;padding:16px 16px 24px;border-top:1px solid #DDE5E0;display:flex;flex-direction:column;gap:8px">
+<a href="#whatsapp" onClick="{{ openWa }}" style="display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;border-radius:12px;background:#0B6E4F;color:#FFFFFF;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none" style-hover="background:#08513A;color:#FFFFFF" style-focus="outline:3px solid #1B1B1B;outline-offset:3px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M9 8.5v1a5.5 5.5 0 0 0 5.5 5.5h1"></path></svg>Start saving on WhatsApp</a>
+<a href="mailto:hello@susubox.example" style="display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;font-size:16px;font-weight:700;color:#0B6E4F;text-decoration:underline;text-underline-offset:3px;border-radius:4px" style-focus="outline:3px solid #1B1B1B;outline-offset:2px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B6E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>hello@susubox.example</a>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ waOpen }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ closeWa }}" style="position:absolute;inset:0;z-index:60;background:rgba(27,27,27,.55);display:flex;align-items:{{ L.sheetAlign }};justify-content:center;animation:susu-fade .16s ease-out">
+<div role="dialog" aria-modal="true" aria-label="Mock WhatsApp chat" onClick="{{ stop }}" style="width:{{ L.sheetW }};height:{{ L.sheetH }};background:#FFFFFF;border-radius:{{ L.sheetR }};overflow:hidden;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,.25)">
+<div style="background:#1A1A1A;color:#FFFFFF;font:600 11px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.04em;padding:8px 16px">PROTOTYPE · mock WhatsApp chat — nothing is sent</div>
+<div style="display:flex;align-items:center;gap:12px;padding:8px 8px 8px 16px;border-bottom:1px solid #DDE5E0">
+<span style="flex:none;width:40px;height:40px;border-radius:50%;background:#0B6E4F;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700">S</span>
+<div style="flex:1;display:flex;flex-direction:column"><span style="font-size:16px;font-weight:700;line-height:1.4">SusuBox</span><span style="font-size:14px;line-height:1.4;color:#5A5A5A">+233 00 000 0000 · WhatsApp</span></div>
+<button type="button" onClick="{{ closeWa }}" aria-label="Close chat" style="width:48px;height:48px;border:0;border-radius:12px;background:transparent;color:#1B1B1B;display:flex;align-items:center;justify-content:center;cursor:pointer" style-hover="background:#F4F7F5" style-focus="outline:3px solid #1B1B1B;outline-offset:2px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<div style="flex:1;background:#F4F7F5;padding:16px;display:flex;flex-direction:column;gap:12px;justify-content:flex-end;overflow-y:auto">
+<sc-if value="{{ waSent }}" hint-placeholder-val="{{ false }}">
+<div style="align-self:flex-end;max-width:80%;background:#DCEFE5;border-radius:12px 12px 4px 12px;padding:10px 12px;font-size:16px;line-height:1.5;display:flex;flex-direction:column;gap:2px;animation:susu-fade .16s ease-out">{{ waMsg }}<span style="align-self:flex-end;font-size:12px;color:#5A5A5A">now</span></div>
+<div style="align-self:center;font:11px/1.5 ui-monospace,Menlo,monospace;color:#5A5A5A;text-align:center;max-width:300px">Prototype: on the live site this opens wa.me/233000000000 with this message pre-filled.</div>
+</sc-if>
+</div>
+<div style="display:flex;gap:8px;padding:12px;border-top:1px solid #DDE5E0;align-items:center">
+<div aria-label="Message" style="flex:1;min-height:48px;border:1px solid #7C8C84;border-radius:24px;padding:11px 16px;font-size:16px;line-height:1.5;color:#1B1B1B">{{ composer }}</div>
+<button type="button" onClick="{{ sendWa }}" aria-label="Send" disabled="{{ waSent }}" style="flex:none;width:48px;height:48px;border:0;border-radius:50%;background:{{ sendBg }};color:#FFFFFF;display:flex;align-items:center;justify-content:center;cursor:pointer" style-focus="outline:3px solid #1B1B1B;outline-offset:2px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+</div>
+</div>
+</div>
+</sc-if>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const FAQ = [
+  ['Is SusuBox a bank?', 'No. SusuBox keeps a record of the savings you give your collector. Your money stays with your collector as it always has.'],
+  ['What does it cost?', 'Registration is free. A small monthly fee applies after your first month.'],
+  ['Do I need a smartphone?', 'You need WhatsApp. Any phone that runs WhatsApp will work.'],
+  ['Can I use it in Twi?', 'Yes. You can send your messages in English or Twi.'],
+  ['Who can see my records?', 'Only you, unless you choose to share your statement with a lender or your association.'],
+];
+const WA_MSG = 'Hello SusuBox, I want to start saving.';
+const BLANK = { name: '', phone: '', email: '', role: '', market: '', message: '' };
+const SAMPLE = { name: 'Kwabena Owusu', phone: '024 123 4567', email: '', role: 'Susu collector', market: 'Kejetia Market, Kumasi', message: 'I collect susu from 40 traders at Kejetia. Can they all get a weekly statement?' };
+const ORDER = ['name', 'phone', 'email', 'role', 'message'];
+function check(k, v) {
+  v = v || '';
+  if (k === 'name') return v.trim() ? '' : 'Enter your full name.';
+  if (k === 'phone') {
+    if (!v.trim()) return 'Enter your phone number.';
+    return /^(\+233|0)[0-9]{9}$/.test(v.replace(/[\s-]/g, '')) ? '' : 'Enter a Ghana phone number, e.g. 024 123 4567';
+  }
+  if (k === 'email') return v && !/^\S+@\S+\.\S+$/.test(v) ? 'Enter a valid email address, or leave it blank.' : '';
+  if (k === 'role') return v ? '' : 'Choose one option.';
+  if (k === 'message') return v.trim() ? '' : 'Enter a message.';
+  return '';
+}
+
+class Component extends DCLogic {
+  scrollRef = React.createRef();
+  state = { vw: window.innerWidth, vh: window.innerHeight, flow: 'mobile', page: 'home', menuOpen: false, faq: [true, false, false, false, false], f: { ...BLANK }, err: {}, touched: {}, status: 'idle', failMode: false, waOpen: false, waSent: false };
+
+  componentDidMount() {
+    this.onResize = () => this.setState({ vw: window.innerWidth, vh: window.innerHeight });
+    this.onKey = (e) => { if (e.key !== 'Escape') return; if (this.state.waOpen) this.setState({ waOpen: false }); else if (this.state.menuOpen) this.closeMenu(); };
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('keydown', this.onKey);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('keydown', this.onKey);
+    clearTimeout(this.t);
+  }
+
+  scrollTo(anchor, fromOtherPage) {
+    cancelAnimationFrame(this.raf);
+    requestAnimationFrame(() => {
+      const sc = this.scrollRef.current;
+      if (!sc) return;
+      if (fromOtherPage) sc.scrollTop = 0;
+      const el = anchor && sc.querySelector('#' + anchor);
+      if (!el) { sc.scrollTop = 0; return; }
+      const headerH = this.state.flow === 'desktop' ? 72 : 60;
+      const target = Math.max(0, Math.min(sc.scrollHeight - sc.clientHeight,
+        (el.getBoundingClientRect().top - sc.getBoundingClientRect().top) / (this.s || 1) + sc.scrollTop - (headerH + 16)));
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) { sc.scrollTop = target; return; }
+      const start = sc.scrollTop, dist = target - start, dur = 500, t0 = performance.now();
+      const ease = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      const step = (now) => {
+        const p = Math.min(1, (now - t0) / dur);
+        sc.scrollTop = start + dist * ease(p);
+        if (p < 1) this.raf = requestAnimationFrame(step);
+      };
+      this.raf = requestAnimationFrame(step);
+    });
+  }
+
+  closeMenu = () => this.setState({ menuOpen: false }, () => { const b = document.getElementById('menu-btn'); if (b) b.focus(); });
+  openMenu = () => this.setState({ menuOpen: true }, () => setTimeout(() => { const a = document.getElementById('mm-first'); if (a) a.focus(); }, 0));
+
+  go(page, anchor) {
+    return (e) => {
+      if (e) e.preventDefault();
+      clearTimeout(this.t);
+      this.samePage = this.state.page === page;
+      const other = this.state.page !== page;
+      this.setState(st => ({ page, menuOpen: false, status: st.status === 'sending' ? 'idle' : st.status }), () => this.scrollTo(anchor, other));
+    };
+  }
+
+  submit = (e) => {
+    e.preventDefault();
+    if (this.state.status === 'sending') return;
+    const err = {};
+    ORDER.forEach(k => { const m = check(k, this.state.f[k]); if (m) err[k] = m; });
+    if (Object.keys(err).length) {
+      this.setState({ err, touched: { name: 1, phone: 1, email: 1, role: 1, message: 1 }, status: 'idle' }, () => {
+        const el = document.getElementById('f-' + ORDER.find(k => err[k]));
+        if (el) el.focus({ preventScroll: false });
+      });
+      return;
+    }
+    this.setState({ err: {}, status: 'sending' });
+    this.t = setTimeout(() => {
+      if (this.state.failMode) this.setState({ status: 'failed' });
+      else this.setState({ status: 'idle', f: { ...BLANK }, touched: {}, page: 'thanks' }, () => this.scrollTo());
+    }, 1400);
+  };
+
+  renderVals() {
+    const s = this.state;
+    const d = s.flow === 'desktop';
+    const fw = d ? 1280 : 360, fh = d ? 800 : 740;
+    const sc = Math.max(0.3, Math.min(1, (s.vw - 32) / fw, (s.vh - 120) / fh));
+    this.s = sc;
+    const L = {
+      waOff: d ? '24px' : '16px', smt: d ? '88px' : '76px',
+      sec: d ? '64px 32px' : '48px 16px',
+      heroPad: d ? '64px 32px' : '24px 16px 48px',
+      heroCols: d ? 'minmax(0,55fr) minmax(0,45fr)' : 'minmax(0,1fr)',
+      heroGap: d ? '64px' : '24px', heroStack: d ? '24px' : '16px', heroImgTop: d ? '0' : '8px',
+      h1: d ? '48px' : '32px', h2: d ? '36px' : '24px', lead: d ? '18px' : '16px',
+      btnDir: d ? 'row' : 'column', headGap: d ? '48px' : '32px',
+      c3: d ? 'repeat(3,minmax(0,1fr))' : 'minmax(0,1fr)', c2: d ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      probGap: d ? '32px' : '24px', probDir: d ? 'column' : 'row',
+      cardGap: d ? '32px' : '16px', cardInner: d ? '24px' : '16px',
+      lineR: d ? '48px' : 'auto', lineTop: d ? '48px' : '24px', lineBot: d ? 'auto' : '24px', lineW: d ? 'auto' : '2px', lineH: d ? '2px' : 'auto',
+      ctaSelf: d ? 'center' : 'stretch', listGap: d ? '32px' : '24px', imgOrder: d ? -1 : 1,
+      stat: d ? '48px' : '40px', statGap: d ? '0' : '24px',
+      statBW: d ? '0 0 0 1px' : '1px 0 0 0', statPad: d ? '0 0 0 32px' : '24px 0 0 0',
+      quotePad: d ? '96px 32px' : '64px 16px', quote: d ? '28px' : '20px', quoteAlign: d ? 'center' : 'left', quoteGap: d ? '24px' : '16px', capSize: d ? '16px' : '14px',
+      ctaAlign: d ? 'center' : 'stretch',
+      faqCols: d ? 'minmax(0,1fr) minmax(0,2fr)' : 'minmax(0,1fr)', faqGap: d ? '64px' : '24px', faqRow: d ? '64px' : '56px', faqQ: d ? '18px' : '16px',
+      contactPad: d ? '64px 32px 96px' : '32px 16px 48px',
+      contactCols: d ? 'minmax(0,7fr) minmax(0,4fr)' : 'minmax(0,1fr)', contactGap: d ? '64px' : '0',
+      asideTop: d ? '176px' : '48px', asidePad: d ? '32px' : '24px',
+      submitSelf: d ? 'flex-start' : 'stretch',
+      footPad: d ? '32px' : '24px 16px 88px', footDir: d ? 'row' : 'column', footAlign: d ? 'center' : 'flex-start', footGap: d ? '32px' : '8px',
+      sheetAlign: d ? 'center' : 'flex-end', sheetW: d ? '420px' : '100%', sheetH: d ? '560px' : '82%', sheetR: d ? '12px' : '12px 12px 0 0',
+    };
+    const keys = ['name', 'phone', 'email', 'role', 'message', 'market'];
+    const on = {}, blur = {}, bc = {}, sh = {}, inv = {}, err = {};
+    keys.forEach(k => {
+      on[k] = (e) => {
+        const v = e.target.value;
+        this.setState(st => {
+          const er = { ...st.err };
+          if (st.touched[k]) er[k] = check(k, v);
+          return { f: { ...st.f, [k]: v }, err: er };
+        });
+      };
+      blur[k] = () => this.setState(st => ({ touched: { ...st.touched, [k]: 1 }, err: { ...st.err, [k]: check(k, st.f[k]) } }));
+      const e = s.err[k] || '';
+      err[k] = e; bc[k] = e ? '#B3261E' : '#7C8C84'; sh[k] = e ? 'inset 0 0 0 1px #B3261E' : 'none'; inv[k] = e ? 'true' : 'false';
+    });
+    const busy = s.status === 'sending';
+    const isContact = s.page === 'contact';
+    const setFlow = (flow) => () => { clearTimeout(this.t); this.setState({ flow, menuOpen: false, waOpen: false, status: busy ? 'idle' : s.status }, () => this.scrollTo()); };
+    return {
+      d, m: !d, L, s: sc, fw: fw + 'px', fh: fh + 'px', boxW: Math.round(fw * sc) + 'px', boxH: Math.round(fh * sc) + 'px',
+      scrollRef: this.scrollRef,
+      flowLabel: (d ? 'Desktop 1280 × 800' : 'Mobile 360 × 740') + (sc < 1 ? ' · shown at ' + Math.round(sc * 100) + '%' : ''),
+      setMobile: setFlow('mobile'), setDesktop: setFlow('desktop'),
+      mobBtnBg: d ? 'transparent' : '#FFFFFF', mobBtnFg: d ? '#FFFFFF' : '#1A1A1A',
+      deskBtnBg: d ? '#FFFFFF' : 'transparent', deskBtnFg: d ? '#1A1A1A' : '#FFFFFF',
+      failMode: s.failMode, toggleFail: () => this.setState(st => ({ failMode: !st.failMode })),
+      fillSample: () => { clearTimeout(this.t); this.setState({ page: 'contact', menuOpen: false, f: { ...SAMPLE }, err: {}, touched: {}, status: 'idle' }, () => this.scrollTo()); },
+      restart: () => { clearTimeout(this.t); this.setState({ page: 'home', menuOpen: false, faq: [true, false, false, false, false], f: { ...BLANK }, err: {}, touched: {}, status: 'idle', waOpen: false, waSent: false }, () => this.scrollTo()); },
+      waUrl: '#whatsapp',
+      openWa: (e) => { if (e) e.preventDefault(); this.setState({ waOpen: true, waSent: false, menuOpen: false }); },
+      closeWa: () => this.setState({ waOpen: false }),
+      stop: (e) => e.stopPropagation(),
+      sendWa: () => this.setState({ waSent: true }),
+      waOpen: s.waOpen, waSent: s.waSent, waMsg: WA_MSG, composer: s.waSent ? '' : WA_MSG, sendBg: s.waSent ? '#9AA59F' : '#0B6E4F',
+      isHome: s.page === 'home', isContact, isThanks: s.page === 'thanks',
+      contactCurrent: isContact ? 'page' : undefined,
+      contactColor: isContact ? '#0B6E4F' : '#1B1B1B', contactWeight: isContact ? 700 : 400, contactDeco: isContact ? 'underline' : 'none',
+      menuOpen: s.menuOpen, menuBg: s.menuOpen ? '#F4F7F5' : '#FFFFFF',
+      menuIcon: s.menuOpen ? 'M6 6l12 12M18 6L6 18' : 'M4 6h16M4 12h16M4 18h16',
+      toggleMenu: () => (s.menuOpen ? this.closeMenu() : this.openMenu()), closeMenu: this.closeMenu,
+      menuOverlay: s.menuOpen && !d, showFloat: !(s.menuOpen && !d), scrollY: s.menuOpen && !d ? 'hidden' : 'auto',
+      goHome: this.go('home'), goHow: this.go('home', 'how-it-works'), goFaq: this.go('home', 'faq'), goContact: this.go('contact'),
+      faq: FAQ.map(([q, a], i) => ({ q, a, open: s.faq[i], chev: s.faq[i] ? 'M6 15l6-6 6 6' : 'M6 9l6 6 6-6',
+        toggle: () => this.setState(st => { const faq = st.faq.slice(); faq[i] = !faq[i]; return { faq }; }) })),
+      f: s.f, on, blur, bc, sh, inv, err,
+      busy, notBusy: !busy, failed: s.status === 'failed',
+      submit: this.submit,
+    };
+  }
+}
+</script>
+</body>
+</html>
