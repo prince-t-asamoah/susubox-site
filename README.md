@@ -19,14 +19,18 @@ More screenshots of the live site, taken on 5 November 2026, are in [docs/screen
 
 | Page | Performance | Accessibility | Best Practices | SEO |
 | --- | --- | --- | --- | --- |
-| Home | [score] | [score] | [score] | [score] |
-| Contact | [score] | [score] | [score] | [score] |
+| [Home](https://susubox-site.netlify.app/) | 98 | 100 | 100 | 100 |
+| [Contact](https://susubox-site.netlify.app/contact/) | 100 | 100 | 100 | 100 |
 
-Screenshots: [docs/pagespeed/](docs/pagespeed/)
+PageSpeed Insights, mobile, on the live site, 5 November 2026. Target: 90+ in every category.
 
-Target: 90+ in every category on mobile. Before deploy, local Lighthouse (mobile) on the production build scored 100 / 100 / 100 / 100 on both pages, with LCP 1.6 s on Home. The table above is filled in from PageSpeed Insights on the live URL.
+Screenshots: [home](docs/pagespeed/home-mobile.png) · [contact](docs/pagespeed/contact-mobile.png)
 
-> **Note:** Netlify adds a "Powered by Netlify" badge script (`/.netlify/scripts/hud`) to the live site. It isn't part of this build, and it costs main-thread time on mobile. Turn it off under **Project configuration → General → Powered by Netlify badge** before running PageSpeed (see [Deploying to Netlify](#deploying-to-netlify)).
+| Home | Contact |
+| --- | --- |
+| [![PageSpeed mobile scores for the home page: 98, 100, 100, 100](docs/pagespeed/home-mobile.png)](docs/pagespeed/home-mobile.png) | [![PageSpeed mobile scores for the contact page: 100, 100, 100, 100](docs/pagespeed/contact-mobile.png)](docs/pagespeed/contact-mobile.png) |
+
+> **Note:** The scores above are with Netlify's "Powered by Netlify" badge turned off (**Project configuration → General**). When it's on, Netlify adds a script (`/.netlify/scripts/hud`) to every page that costs main-thread time on mobile and covers the floating WhatsApp button. Keep it off.
 
 ## Features
 
