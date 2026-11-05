@@ -111,7 +111,7 @@ The current photos are 1408 × 768, so the hero is served at up to 614px wide an
 
 - **WhatsApp number:** set `whatsappNumber` in `src/config.ts` in international format with no `+`, for example `233241234567`.
   - Every WhatsApp button on the site uses this one value.
-  - Once it is no longer the placeholder, the number is also added to the page's structured data.
+  - When it's the owner's real business number, also set `whatsappConfirmed: true`. That adds it to the page's structured data as the business phone; until then it stays out.
 - **Form:** submissions appear in the Netlify dashboard under **Forms → contact**. Set email notifications there.
   - The form is plain HTML in `src/pages/contact/index.astro`, so Netlify detects it at deploy time.
 
@@ -144,7 +144,7 @@ Sample content to confirm or replace with the owner before launch. Each item is 
 
 **Business details** (`src/config.ts`)
 - [ ] Business name: "SusuBox"
-- [ ] WhatsApp number: currently the placeholder `233000000000`
+- [ ] WhatsApp number: currently the developer's demo number `233241032732`. Replace it with the owner's and set `whatsappConfirmed: true`
 - [ ] Email: `hello@susubox.example`
 - [ ] Office hours: "Mon–Sat, 7am–6pm"
 - [ ] Custom domain: live now at `https://susubox-site.netlify.app`; if it changes, also update `astro.config.mjs` and `public/robots.txt`
