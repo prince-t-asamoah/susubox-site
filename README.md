@@ -2,7 +2,7 @@
 
 Your daily susu, recorded on WhatsApp. A fast, mobile-first website for a digital susu savings service for market traders in Ghana.
 
-Status: built, not yet deployed. Real photos and the owner's details are still to come (see the [handover checklist](#handover-checklist)).
+Status: built, not yet deployed. The owner's details are still to come (see the [handover checklist](#handover-checklist)).
 
 Live site: [LIVE_URL] · Design prototype: [docs/design/](docs/design/)
 
@@ -67,16 +67,18 @@ If the site moves to a custom domain, update `site.url` in `src/config.ts`, `sit
 
 ## Adding the photos
 
-The site expects two photos in `src/assets/`. Until they exist, each slot shows a plain green placeholder block.
+The site uses two photos in `src/assets/`. If a file is missing, its slot shows a plain green placeholder block.
 
 | File | Used for | Crop | Source size |
 | --- | --- | --- | --- |
 | `src/assets/hero-trader.jpg` | Home hero | 4:5 portrait | at least 1200 × 1500 |
 | `src/assets/benefits-collector.jpg` | Benefits section | 1:1 square | at least 1200 × 1200 |
 
-Drop the files in with these names and rebuild. Astro crops them, with smart cropping that favours faces. It also exports AVIF and WebP at 480, 800 and 1200px wide, plus an 800px JPEG fallback.
+To replace a photo, drop in a new file with the same name and rebuild. Astro crops it and exports AVIF and WebP at 480, 800 and 1200px wide, plus an 800px JPEG fallback. Widths larger than the source are skipped; nothing is upscaled.
 
-To change the crop focus, pass `position` to `<Photo>` in `src/pages/index.astro`, for example `position="top"`. Use photos from Unsplash or Pexels only, and add the credit below.
+Both photos are cropped from the centre. To change the focus, edit `position` on the `<Photo>` in `src/pages/index.astro` (for the hero, the `hero` object at the top). It takes a keyword such as `"top"` or `"left"`, or `"attention"` for smart cropping. Per SHARED-STANDARDS §11, final photos should come from Unsplash or Pexels; add the credit below.
+
+The current photos are 1408 × 768, so the hero is served at up to 614px wide and the benefits image at up to 768px. Sharper results need larger sources (see the table).
 
 ## Changing the WhatsApp number and form
 
@@ -136,7 +138,7 @@ Sample content to confirm or replace with the owner before launch. Each item is 
 - [ ] Footer disclaimer: none yet (for example, a line saying SusuBox is not a bank)
 
 **Assets**
-- [ ] Hero and benefits photos (see [Adding the photos](#adding-the-photos)), with credits below
+- [ ] Hero and benefits photos: the current ones are AI-generated placeholders from the design stage. Replace them with real photos (Unsplash/Pexels or the owner's own, with permission) and update the credits below.
 - [ ] Open Graph image `public/og.jpg`. It shows the hero headline only, with no sample figures. Regenerate it from `scripts/brand/og.html` if the branding changes.
 - [ ] Favicon `public/favicon.svg` and `public/apple-touch-icon.png` (rebuild with `node scripts/make-touch-icon.mjs`)
 
@@ -150,7 +152,7 @@ Sample content to confirm or replace with the owner before launch. Each item is 
 
 Website by [Prince Twumasi Asamoah](https://github.com/prince-t-asamoah) ([LinkedIn](https://linkedin.com/in/prince-t-asamoah)).
 
-Photo credits: [to be added when the photos are chosen]
+Photo credits: `src/assets/hero-trader.jpg` and `src/assets/benefits-collector.jpg` are AI-generated images (Google generative AI; C2PA/SynthID metadata in the originals) supplied for the design mockups. They are not photos of real people or SusuBox customers.
 
 Font: [Inter](https://rsms.me/inter/) by Rasmus Andersson, SIL Open Font License 1.1 (`public/fonts/OFL.txt`).
 

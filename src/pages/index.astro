@@ -8,7 +8,8 @@ import FaqItem from "../components/FaqItem.astro";
 import { findPhoto, photoSources } from "../lib/photos";
 import { stats, testimonial, pricingAnswer } from "../config";
 
-const hero = { name: "hero-trader", ratio: [4, 5] as [number, number] };
+// The subject is centred in the source, so crop from the centre (smart crop picked the background).
+const hero = { name: "hero-trader", ratio: [4, 5] as [number, number], position: "center" };
 const heroSizes = "(min-width: 1216px) 497px, (min-width: 768px) 40vw, calc(100vw - 32px)";
 const heroPhoto = findPhoto(hero.name);
 const heroPreload = heroPhoto
@@ -49,6 +50,7 @@ const problems: { icon: IconName; title: string; text: string }[] = [
       <Photo
         class="hero__photo"
         name={hero.name}
+        position={hero.position}
         ratio={hero.ratio}
         sizes={heroSizes}
         alt="A market trader checks her savings record on her phone"
@@ -113,6 +115,7 @@ const problems: { icon: IconName; title: string; text: string }[] = [
       <Photo
         class="benefits__photo"
         name="benefits-collector"
+        position="center"
         ratio={[1, 1]}
         sizes="(min-width: 1216px) 544px, (min-width: 768px) 45vw, calc(100vw - 32px)"
         alt="A susu collector visits a trader at her stall"

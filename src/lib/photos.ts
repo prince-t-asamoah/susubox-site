@@ -37,10 +37,17 @@ export async function photoSources(src: ImageMetadata, { ratio, position = "atte
   const [rw, rh] = ratio;
   const crop = (width: number) => ({ src, width, height: Math.round((width * rh) / rw), fit: "cover", position });
 
+  // Images are never upscaled, so cap the widths at the largest crop the source allows;
+  // otherwise the srcset would advertise sizes (e.g. "1200w") the files don't have.
+  const maxWidth = Math.floor(Math.min(src.width, (src.height * rw) / rh));
+  const widths = WIDTHS.filter((w) => w < maxWidth);
+  widths.push(Math.min(maxWidth, WIDTHS[WIDTHS.length - 1]));
+  const largest = widths[widths.length - 1];
+
   const [avif, webp, jpg] = await Promise.all([
-    getImage({ ...crop(1200), widths: WIDTHS, format: "avif", quality: 50 }),
-    getImage({ ...crop(1200), widths: WIDTHS, format: "webp", quality: 70 }),
-    getImage({ ...crop(800), format: "jpg", quality: 65 }),
+    getImage({ ...crop(largest), widths, format: "avif", quality: 50 }),
+    getImage({ ...crop(largest), widths, format: "webp", quality: 70 }),
+    getImage({ ...crop(Math.min(800, largest)), format: "jpg", quality: 65 }),
   ]);
 
   return { avif, webp, jpg };
