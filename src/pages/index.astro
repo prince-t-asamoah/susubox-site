@@ -1,8 +1,118 @@
 ---
 import Base from "../layouts/Base.astro";
+import Button from "../components/Button.astro";
+import Photo from "../components/Photo.astro";
+import { findPhoto, photoSources } from "../lib/photos";
+
+const hero = { name: "hero-trader", ratio: [4, 5] as [number, number] };
+const heroSizes = "(min-width: 1216px) 497px, (min-width: 768px) 40vw, calc(100vw - 32px)";
+const heroPhoto = findPhoto(hero.name);
+const heroPreload = heroPhoto
+  ? { srcset: (await photoSources(heroPhoto, hero)).avif.srcSet.attribute, sizes: heroSizes }
+  : undefined;
 ---
 <Base
   title="SusuBox — Daily susu savings on WhatsApp"
   description="Save daily with your susu collector and get a clear record on WhatsApp. Built for market traders in Ghana."
+  preloadImage={heroPreload}
 >
+  <!-- 6.1 Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <p class="eyebrow">For market traders in Ghana</p>
+        <h1 id="hero-title">Your daily susu, recorded on WhatsApp</h1>
+        <p class="lead">
+          Send your contribution by WhatsApp. SusuBox keeps the record, sends you a weekly statement, and helps you
+          show lenders how well you save.
+        </p>
+        <div class="hero__actions">
+          <Button whatsapp block>Start saving on WhatsApp</Button>
+          <Button href="#how-it-works" variant="secondary" block>How it works</Button>
+        </div>
+        <p class="small muted">No app to download · Works on any phone with WhatsApp</p>
+      </div>
+      <Photo
+        class="hero__photo"
+        name={hero.name}
+        ratio={hero.ratio}
+        sizes={heroSizes}
+        alt="A market trader checks her savings record on her phone"
+        priority
+      />
+    </div>
+  </section>
 </Base>
+
+<style>
+  /* ---------- Hero ---------- */
+  .hero {
+    padding-block: 24px 48px;
+  }
+
+  .hero__grid {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .hero__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  /* Gold pill with ink text: gold text on white fails AA (design handoff, difference 1). */
+  .eyebrow {
+    align-self: flex-start;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    background: var(--color-accent);
+    color: var(--color-ink);
+    font-size: var(--fs-small);
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-1);
+  }
+
+  .hero :global(.hero__photo) {
+    margin-top: var(--space-1);
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      padding-block: var(--space-8);
+    }
+
+    .hero__grid {
+      grid-template-columns: 55fr 45fr;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .hero__text {
+      gap: var(--space-3);
+    }
+
+    .hero .lead {
+      max-width: 34em;
+    }
+
+    .hero__actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-top: 0;
+    }
+
+    .hero :global(.hero__photo) {
+      margin-top: 0;
+    }
+  }
+</style>
