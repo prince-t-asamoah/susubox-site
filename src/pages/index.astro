@@ -5,7 +5,7 @@ import Photo from "../components/Photo.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
 import StepCard from "../components/StepCard.astro";
 import { findPhoto, photoSources } from "../lib/photos";
-import { stats } from "../config";
+import { stats, testimonial } from "../config";
 
 const hero = { name: "hero-trader", ratio: [4, 5] as [number, number] };
 const heroSizes = "(min-width: 1216px) 497px, (min-width: 768px) 40vw, calc(100vw - 32px)";
@@ -130,6 +130,18 @@ const problems: { icon: IconName; title: string; text: string }[] = [
       ))}
     </ul>
   </div>
+
+  <!-- 6.6 Testimonial (SAMPLE in src/config.ts; set it to null to remove the section) -->
+  {testimonial && (
+    <div class="testimonial">
+      <figure class="container testimonial__inner">
+        <blockquote>
+          <p>"{testimonial.quote}"</p>
+        </blockquote>
+        <figcaption class="small muted">— {testimonial.attribution}</figcaption>
+      </figure>
+    </div>
+  )}
 </Base>
 
 <style>
@@ -392,6 +404,43 @@ const problems: { icon: IconName; title: string; text: string }[] = [
 
     .stat__value {
       font-size: 3rem;
+    }
+  }
+
+  /* ---------- Testimonial ---------- */
+  .testimonial {
+    padding-block: var(--space-8);
+  }
+
+  .testimonial__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .testimonial blockquote {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  @media (min-width: 768px) {
+    .testimonial {
+      padding-block: var(--space-12);
+    }
+
+    .testimonial__inner {
+      max-width: calc(800px + 2 * var(--gutter));
+      text-align: center;
+    }
+
+    .testimonial blockquote {
+      font-size: 1.75rem;
+      line-height: 1.45;
+    }
+
+    .testimonial figcaption {
+      font-size: 1rem;
     }
   }
 </style>
