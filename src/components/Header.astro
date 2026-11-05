@@ -231,7 +231,7 @@ const isCurrent = (href: string) => !href.includes("#") && path.startsWith(href)
     text-decoration: none;
   }
 
-  .menu__nav a svg {
+  .menu__nav a :global(svg) {
     color: var(--color-primary);
   }
 
