@@ -1,0 +1,52 @@
+---
+interface Props {
+  number: number;
+  title: string;
+}
+
+const { number, title } = Astro.props;
+---
+<li class="step">
+  <span class="step__number" aria-hidden="true">{number}</span>
+  <div class="step__body">
+    <h3><span class="visually-hidden">Step {number}: </span>{title}</h3>
+    <p><slot /></p>
+  </div>
+</li>
+
+<style>
+  .step {
+    position: relative; /* sits above the connector line drawn by the list */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+  }
+
+  .step__number {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-ink);
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .step__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  @media (min-width: 768px) {
+    .step {
+      gap: var(--space-3);
+    }
+  }
+</style>

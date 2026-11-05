@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import Button from "../components/Button.astro";
 import Photo from "../components/Photo.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
+import StepCard from "../components/StepCard.astro";
 import { findPhoto, photoSources } from "../lib/photos";
 
 const hero = { name: "hero-trader", ratio: [4, 5] as [number, number] };
@@ -69,6 +70,29 @@ const problems: { icon: IconName; title: string; text: string }[] = [
           </li>
         ))}
       </ul>
+    </div>
+  </section>
+
+  <!-- 6.3 How it works -->
+  <section id="how-it-works" class="section" aria-labelledby="steps-title">
+    <div class="container stack">
+      <h2 id="steps-title">How SusuBox works</h2>
+      <ol class="steps" role="list">
+        <StepCard number={1} title="Message us on WhatsApp">
+          {/* SAMPLE: registration time, confirm with owner */}
+          Say hello and we register you in under five minutes. Just your name, market and phone number.
+        </StepCard>
+        <StepCard number={2} title="Send your daily amount">
+          Each day, type what you paid your collector. For example: "Paid 20 cedis".
+        </StepCard>
+        <StepCard number={3} title="Get your weekly statement">
+          {/* SAMPLE: statement day, confirm with owner */}
+          Every Sunday we send a clear summary of what you saved. Download it any time.
+        </StepCard>
+      </ol>
+      <div class="steps__cta">
+        <Button whatsapp block>Start saving on WhatsApp</Button>
+      </div>
     </div>
   </section>
 </Base>
@@ -186,6 +210,56 @@ const problems: { icon: IconName; title: string; text: string }[] = [
 
     .problem__item {
       flex-direction: column;
+    }
+  }
+
+  /* ---------- How it works ---------- */
+  .steps {
+    position: relative;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  /* Gold connector behind the cards, visible only in the gaps (decorative). */
+  .steps::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 47px;
+    width: 2px;
+    background: var(--color-accent);
+  }
+
+  .steps__cta {
+    display: flex;
+  }
+
+  .steps__cta :global(.btn) {
+    flex: 1;
+  }
+
+  @media (min-width: 768px) {
+    .steps {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+
+    .steps::before {
+      top: 47px;
+      bottom: auto;
+      left: 48px;
+      right: 48px;
+      width: auto;
+      height: 2px;
+    }
+
+    .steps__cta {
+      justify-content: center;
+    }
+
+    .steps__cta :global(.btn) {
+      flex: none;
     }
   }
 </style>
