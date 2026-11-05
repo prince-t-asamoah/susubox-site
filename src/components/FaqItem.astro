@@ -1,0 +1,73 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  question: string;
+  open?: boolean;
+}
+
+const { question, open = false } = Astro.props;
+---
+<details class="faq-item" open={open}>
+  <summary>
+    <span>{question}</span>
+    <Icon name="chevron-down" class="faq-item__chevron" />
+  </summary>
+  <p class="faq-item__answer"><slot /></p>
+</details>
+
+<style>
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-item:first-child {
+    border-top: 1px solid var(--color-border);
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    min-height: 56px;
+    padding: 12px 0;
+    font-weight: 700;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary:hover {
+    color: var(--color-primary);
+  }
+
+  .faq-item :global(.faq-item__chevron) {
+    flex: none;
+    color: var(--color-primary);
+  }
+
+  .faq-item[open] :global(.faq-item__chevron) {
+    transform: rotate(180deg);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .faq-item :global(.faq-item__chevron) {
+      transition: transform 150ms ease;
+    }
+  }
+
+  .faq-item__answer {
+    padding: 0 40px 16px 0;
+  }
+
+  @media (min-width: 768px) {
+    summary {
+      min-height: 64px;
+      font-size: 1.125rem;
+    }
+  }
+</style>

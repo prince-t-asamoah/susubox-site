@@ -4,8 +4,9 @@ import Button from "../components/Button.astro";
 import Photo from "../components/Photo.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
 import StepCard from "../components/StepCard.astro";
+import FaqItem from "../components/FaqItem.astro";
 import { findPhoto, photoSources } from "../lib/photos";
-import { stats, testimonial } from "../config";
+import { stats, testimonial, pricingAnswer } from "../config";
 
 const hero = { name: "hero-trader", ratio: [4, 5] as [number, number] };
 const heroSizes = "(min-width: 1216px) 497px, (min-width: 768px) 40vw, calc(100vw - 32px)";
@@ -142,6 +143,26 @@ const problems: { icon: IconName; title: string; text: string }[] = [
       </figure>
     </div>
   )}
+
+  <!-- 6.7 FAQ -->
+  <section id="faq" class="section section--rule" aria-labelledby="faq-title">
+    <div class="container faq">
+      {/* TODO: FAQ heading copy is not in SPEC.md; "Frequently asked questions" is the design's placeholder. */}
+      <h2 id="faq-title">Frequently asked questions</h2>
+      <div class="faq__list">
+        <FaqItem question="Is SusuBox a bank?" open>
+          No. SusuBox keeps a record of the savings you give your collector. Your money stays with your collector as it
+          always has.
+        </FaqItem>
+        <FaqItem question="What does it cost?">{pricingAnswer}</FaqItem>
+        <FaqItem question="Do I need a smartphone?">You need WhatsApp. Any phone that runs WhatsApp will work.</FaqItem>
+        <FaqItem question="Can I use it in Twi?">Yes. You can send your messages in English or Twi.</FaqItem>
+        <FaqItem question="Who can see my records?">
+          Only you, unless you choose to share your statement with a lender or your association.
+        </FaqItem>
+      </div>
+    </div>
+  </section>
 </Base>
 
 <style>
@@ -441,6 +462,20 @@ const problems: { icon: IconName; title: string; text: string }[] = [
 
     .testimonial figcaption {
       font-size: 1rem;
+    }
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .faq {
+      grid-template-columns: 1fr 2fr;
+      align-items: start;
+      gap: var(--space-8);
     }
   }
 </style>
