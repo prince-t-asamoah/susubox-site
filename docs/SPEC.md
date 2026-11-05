@@ -205,7 +205,7 @@ JSON-LD `Organization`: name, url, logo (`/favicon.svg`), `contactPoint` (teleph
 2. Attach **`00-SHARED-STANDARDS.md`** and **`01-SUSUBOX-SPEC.md`**.
 3. Paste the full prompt in §D2 as your first message.
 4. Review the result against the checklist in §D4 and ask for fixes in follow-up messages.
-5. Click through the prototype on a phone and a laptop. Export each frame as PNG, and the prototype as HTML (or its share link), to `docs/design/` using the file names in §D3.
+5. Click through the prototype on a phone and a laptop. Export each frame as PNG, the prototype as HTML (or its share link), and the developer handoff package (into `docs/design/handoff/`) to `docs/design/` using the file names in §D3.
 6. If the design changes copy, colours or spacing, update `01-SUSUBOX-SPEC.md` too. **The spec wins if they conflict.**
 
 ## D2. Prompt (paste as one message)
@@ -260,6 +260,22 @@ Deliver, as separate frames:
    small) with sizes in rem, buttons (primary, secondary, hover, focus-visible,
    disabled), form inputs (default, focus, error), cards, the WhatsApp button,
    and the icon set used.
+
+8. A DEVELOPER HANDOFF package for a coding agent, exported with the design:
+   - design tokens as CSS custom properties (colours, spacing, radii, type
+     scale, header height) using the exact names and values in SPEC.md;
+   - per-screen specs: layout grid, column counts, spacing between sections
+     and elements, font sizes and weights, image aspect ratios, at 360px and
+     1280px;
+   - component specs and states (default, hover, focus-visible, disabled,
+     error) for buttons, inputs, cards, header, mobile menu overlay and the
+     WhatsApp button;
+   - the interaction notes: sticky header, smooth scroll, overlay open/close,
+     form states and each project-specific interaction;
+   - all icons as clean, optimised inline SVG files;
+   - a short README listing every place the design differs from SPEC.md.
+   Use the "handoff to Claude Code" / export-for-developers option if
+   available; otherwise put this in a single Markdown document plus the SVGs.
 
 Also build a clickable PROTOTYPE that links the frames together, so the site
 can be walked through like the real thing:
@@ -339,6 +355,7 @@ susubox-form-states.png, susubox-nav-mobile.png, susubox-components.png
 - [ ] `docs/design/susubox-components.png`
 
 - [ ] `docs/design/susubox-prototype/` — exported clickable prototype (HTML), or `docs/design/susubox-prototype-link.txt` with the share link
+- [ ] `docs/design/handoff/` — developer handoff: tokens, screen and component specs, interaction notes, SVG icons, and a README of differences from SPEC.md
 
 ## D4. Review checklist (before exporting)
 
@@ -356,6 +373,7 @@ susubox-form-states.png, susubox-nav-mobile.png, susubox-components.png
 - [ ] Mobile menu is a full-screen overlay with the close button where the menu button was; links close it and go to the right place
 - [ ] Header stays pinned to the top while scrolling in both the mobile and desktop prototype flows
 - [ ] Prototype: section links smooth-scroll and land with the heading visible below the header
+- [ ] Handoff token names and values match SPEC.md exactly; any differences are listed in the handoff README
 - [ ] Prototype: every link, button, menu, WhatsApp overlay and form state works in both mobile and desktop flows, with no dead ends
 - [ ] Desktop layouts use the spec's column counts and container width
 
@@ -363,4 +381,4 @@ susubox-form-states.png, susubox-nav-mobile.png, susubox-components.png
 
 Add this line to the top of each repo's `docs/SPEC.md` once mockups are exported:
 
-> Visual reference: see `docs/design/*.png`. Match layout, spacing and hierarchy from the mockups, and the behaviour shown in the clickable prototype (ignore prototype-only controls and the mock WhatsApp overlay — the real button opens wa.me); take copy, tokens and behaviour from this spec. Where the mockup and this spec disagree, this spec wins — flag the difference in your report.
+> Visual reference: see `docs/design/*.png`. Exact spacing, sizes and tokens are in `docs/design/handoff/` — use them as reference only and do not copy prototype code into `src/`. Match layout, spacing and hierarchy from the mockups, and the behaviour shown in the clickable prototype (ignore prototype-only controls and the mock WhatsApp overlay — the real button opens wa.me); take copy, tokens and behaviour from this spec. Where the mockup and this spec disagree, this spec wins — flag the difference in your report.
