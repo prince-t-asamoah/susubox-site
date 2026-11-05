@@ -148,9 +148,10 @@ const msg = {
       </p>
     </aside>
   </div>
-</Base>
 
-<script src="../../scripts/contact-form.ts"></script>
+  <!-- Inside <Base> so it renders inside <body>, not after </html>. -->
+  <script src="../../scripts/contact-form.ts"></script>
+</Base>
 
 <style>
   /* ---------- Form fields (contact page only) ---------- */
