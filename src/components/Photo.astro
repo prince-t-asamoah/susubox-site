@@ -28,6 +28,7 @@ const [rw, rh] = ratio;
       decoding={priority ? "sync" : "async"}
       loading={priority ? "eager" : "lazy"}
       fetchpriority={priority ? "high" : undefined}
+      data-image-component={import.meta.env.DEV ? "true" : undefined}
     />
   </picture>
 ) : (

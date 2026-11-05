@@ -74,16 +74,10 @@ const organization = {
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <Header />
-    <main id="main" tabindex="-1">
+    <main id="main">
       <slot />
     </main>
     <Footer />
     <WhatsAppButton />
   </body>
 </html>
-
-<style>
-  main:focus {
-    outline: none;
-  }
-</style>
