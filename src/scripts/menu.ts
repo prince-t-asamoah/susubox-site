@@ -5,8 +5,11 @@ const fallback = document.querySelector<HTMLAnchorElement>("[data-menu-toggle]")
 if (dialog && fallback && typeof dialog.showModal === "function") {
   // Upgrade the no-JS "#footer-nav" link to a real button.
   const toggle = document.createElement("button");
+  // Copy every attribute (class + Astro's scoped-style data attribute) except the link-only ones.
+  for (const { name, value } of fallback.attributes) {
+    if (name !== "href" && name !== "data-menu-toggle") toggle.setAttribute(name, value);
+  }
   toggle.type = "button";
-  toggle.className = fallback.className;
   toggle.innerHTML = fallback.innerHTML;
   toggle.setAttribute("aria-controls", "mobile-menu");
   toggle.setAttribute("aria-expanded", "false");
